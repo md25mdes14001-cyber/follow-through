@@ -1,0 +1,113 @@
+<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Claim Ladder</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>:root{color-scheme:light}body{margin:0;background:#fff;color:#1F1F1F;font:400 16px/1.6 Inter,"Segoe UI",system-ui,sans-serif}
+main{max-width:900px;margin:0 auto;padding:40px max(16px,env(safe-area-inset-left,0px)) 64px}
+h1,h2,h3{color:#0F0F0F;font-weight:600;letter-spacing:-.025em;line-height:1.15}h1{font-size:2.2rem}h2{font-size:1.4rem;margin-top:2rem}
+a{color:#1F7A5C}code{font-family:"JetBrains Mono",Consolas,monospace;font-size:.88em;background:#F5F5F3;padding:.1em .3em;border-radius:4px}
+.tbl{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:.92rem;margin:1rem 0}th{font:500 .7rem/1.3 "JetBrains Mono",Consolas,monospace;letter-spacing:.08em;text-transform:uppercase;color:#5C5C5C;text-align:left;border-bottom:1px solid #0F0F0F;padding:.5rem}
+td{border-bottom:1px solid #E2E2E0;padding:.5rem;vertical-align:top}.back{font:500 .72rem/1 "JetBrains Mono",Consolas,monospace;letter-spacing:.1em;text-transform:uppercase}</style></head><body><main><p class="back"><a href="../index.html">← Follow-Through</a></p><h1>The Claim Ladder</h1>
+<p><strong>Status: CONCEPT (v1, 16 November 2026).</strong> A working tool for this thesis. Not yet tested with a partner.</p>
+<p>A small waste pilot can honestly say less than most pilots do. The Claim Ladder makes that visible. Each rung names what may be claimed, the evidence that earns the claim, who can supply that evidence, and the words allowed. A claim climbs only as far as its evidence. Anything above the last evidenced rung is written as "not claimed".</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Rung</th>
+<th>Claim</th>
+<th>Evidence that earns it</th>
+<th>Who can supply it</th>
+<th>Allowed wording</th>
+<th>Not allowed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Collected</strong></td>
+<td>Weight at handover, date, source group; signed slip or photo of the scale</td>
+<td>Collector, facilitator</td>
+<td>"We collected 4.2 kg of dry waste from Block B on 9 Nov."</td>
+<td>"We diverted 4.2 kg from landfill." (diversion is not yet shown)</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Segregated and verified</strong></td>
+<td>Contamination check by an agreed method (sample audit, % by weight)</td>
+<td>Facilitator, collector, independent auditor</td>
+<td>"About 8% of the batch was mixed in (sample audit, 1 bag of 5)."</td>
+<td>"100% segregated", or any rate without a method</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Delivered</strong></td>
+<td>Delivery slip or weighbridge receipt naming the receiver, date and weight</td>
+<td>Receiver (aggregator, ecobrick station, co-processor)</td>
+<td>"3.1 kg was delivered to [named receiver] on 12 Nov (slip no. …)."</td>
+<td>"Recycled", "sent for recycling" without a named receiver</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Processed</strong></td>
+<td>Receiver's intake or processing record for that batch</td>
+<td>Receiver</td>
+<td>"[Receiver] recorded the batch as processed into [ecobricks / RDF / pellets]."</td>
+<td>"Became new products"</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Reintegrated</strong></td>
+<td>Output record linking the batch, or a mass-balance share of it, to a product or material sold</td>
+<td>Recycler, brand</td>
+<td>"[Share] of the batch entered [product / material], per [recycler] output record."</td>
+<td>Any carbon or "circular" claim</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>Environmental outcome</strong></td>
+<td>Life-cycle assessment with a stated method, boundary and baseline (for example ISO 14040/44), ideally reviewed</td>
+<td>LCA practitioner</td>
+<td>"Estimated [x] kg CO2e avoided against [baseline], [method], [reviewer]."</td>
+<td>"Carbon credits" (these need a registered methodology and third-party verification), "net zero", "saved the planet"</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Three rules</h2>
+<ol>
+<li><strong>Label the rung on every number.</strong> A slide that says "4.2 kg" must also say "rung 1: collected".</li>
+<li><strong>Do not average across rungs.</strong> "We handled 40 kg" mixes collected, delivered and processed. Report each rung separately.</li>
+<li><strong>Say what you cannot claim.</strong> The Trust Receipt prints "not yet confirmed" for every rung without evidence. Whether this openness helps or hurts participation is unknown; the thesis tests it (hypothesis H4 in the dossier).</li>
+</ol>
+<h2>Claim labels for portfolio and project work</h2>
+<p>Every statement about the work itself carries one of four labels, as required by CLAUDE.md:</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Label</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>DONE</strong></td>
+<td>Happened, with a record a stranger could check</td>
+<td>"Ran awareness sessions with local women and nearby schools near Satna (Jun–Jul 2026)."</td>
+</tr>
+<tr>
+<td><strong>IN PROGRESS</strong></td>
+<td>Started, not finished</td>
+<td>"Converting the ecobricks into furniture."</td>
+</tr>
+<tr>
+<td><strong>PLANNED</strong></td>
+<td>Designed, not started</td>
+<td>"8–10 week matched-group pilot with weekly weigh-ins."</td>
+</tr>
+<tr>
+<td><strong>CONCEPT</strong></td>
+<td>An idea or prototype with no field use</td>
+<td>"Trust Receipt clickable prototype (sample data)."</td>
+</tr>
+</tbody>
+</table></div>
+<p>Every number carries a source or the tag <strong>[UNVERIFIED]</strong>. Numbers from the student's own fieldwork carry "own data, n = …, date".</p>
+<h2>Worked example (illustrative, not field data)</h2>
+<p>The Trust Receipt prototype (<code>01_Fixed/Aham_Brahmasmi/prototype/</code>) shows the ladder in use: a sample batch of 4.2 kg is evidenced to rung 3, pending at rung 4, and "not claimed" at rungs 5 and 6. The receipt prints both "what we can say" and "what we cannot say yet".</p></main></body></html>

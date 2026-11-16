@@ -1,0 +1,612 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seva Circle and Trust Receipt — Prototype</title>
+<meta name="description" content="Aham Brahmasmi PROTOTYPE: a clickable demo of the Seva Circle (a 10-minute weekly group routine) and the Trust Receipt (segregation assurance). Sample data only.">
+<style>
+:root{
+  --ink:#1A3A52;          /* deep blue, headings and primary buttons */
+  --text:#262626;         /* body text */
+  --muted:#545B63;        /* secondary text, 6.4:1 on --bg */
+  --bg:#FAFAF8;
+  --surface:#FFFFFF;
+  --line:#E3DED3;
+  --saffron:#FF9F1C;      /* accent fill only, never text on white */
+  --saffron-soft:#FFF1DC;
+  --green:#22663F;        /* evidenced text, 6.9:1 on --green-soft */
+  --green-soft:#E3F1E8;
+  --amber:#7A4A00;        /* pending text, 7.6:1 on --saffron-soft */
+  --grey:#4A4A4A;
+  --grey-soft:#EDEBE6;
+  --maroon:#8B4545;       /* PROTOTYPE chip, 6.9:1 with white */
+  --focus:#1F6FEB;
+  --radius:14px;
+  --font:"Inter","Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
+  --deva:"Noto Sans Devanagari","Nirmala UI","Mangal",sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:#ECE8DF;color:var(--text);font-family:var(--font);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+body.hi{font-family:var(--deva),var(--font)}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:6px}
+.page{display:grid;grid-template-columns:1fr;justify-items:center;min-height:100svh;gap:32px;padding:0}
+.notes{display:none}
+@media (min-width:980px){
+  .page{grid-template-columns:minmax(300px,440px) 420px;justify-content:center;align-items:start;padding:40px 24px}
+  .notes{display:block;position:sticky;top:40px;color:var(--text)}
+  .phone{border-radius:28px;box-shadow:0 20px 60px rgba(26,58,82,.18);height:min(840px,calc(100svh - 80px));min-height:600px}
+}
+.notes h1{font-size:28px;line-height:1.2;color:var(--ink);margin:12px 0 8px}
+.notes p,.notes li{font-size:15px;color:var(--muted)}
+.notes ul{padding-left:18px}
+.notes .kicker{display:inline-block;background:var(--maroon);color:#fff;font-weight:700;font-size:12px;letter-spacing:.08em;padding:4px 10px;border-radius:999px}
+.notes .box{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;margin-top:16px}
+.notes .box h2{font-size:15px;margin:0 0 6px;color:var(--ink)}
+
+.phone{width:100%;max-width:420px;background:var(--bg);height:100svh;display:flex;flex-direction:column;overflow:hidden;position:relative}
+.top{background:var(--surface);border-bottom:1px solid var(--line);padding:12px 16px 10px;display:flex;align-items:center;gap:10px}
+.brand{font-weight:800;color:var(--ink);font-size:17px;letter-spacing:-.01em;flex:1;min-width:0}
+.brand small{display:block;font-weight:500;color:var(--muted);font-size:12px;letter-spacing:0}
+.chip-proto{background:var(--maroon);color:#fff;font-size:11px;font-weight:800;letter-spacing:.08em;padding:4px 8px;border-radius:999px;white-space:nowrap}
+.lang{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:4px 10px;font-size:13px;font-weight:600;cursor:pointer;min-height:32px}
+.banner{background:var(--saffron-soft);color:var(--amber);font-size:13px;padding:8px 16px;border-bottom:1px solid #F3D9AE}
+.banner strong{color:#5C3700}
+main{flex:1;overflow-y:auto;padding:16px 16px 96px}
+h2.screen{font-size:22px;line-height:1.25;color:var(--ink);margin:4px 0 4px}
+.sub{color:var(--muted);font-size:14px;margin:0 0 16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin-bottom:12px}
+.card h3{margin:0 0 4px;font-size:16px;color:var(--ink)}
+.card p{margin:0 0 8px;font-size:14px;color:var(--muted)}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.btn{border:0;border-radius:12px;padding:12px 16px;min-height:44px;font-weight:700;cursor:pointer;background:var(--ink);color:#fff}
+.btn.sec{background:var(--surface);color:var(--ink);border:1.5px solid var(--ink)}
+.btn.ghost{background:transparent;color:var(--ink);padding:10px 8px;text-decoration:underline;text-underline-offset:3px}
+.btn.full{width:100%}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.big{font-size:32px;font-weight:800;color:var(--ink);line-height:1.1}
+.label{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.steps{display:flex;gap:6px;margin:0 0 14px}
+.steps span{flex:1;height:6px;border-radius:6px;background:var(--grey-soft)}
+.steps span.on{background:var(--saffron)}
+.counter{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0;border-top:1px solid var(--line)}
+.counter:first-of-type{border-top:0}
+.counter .n{font-size:26px;font-weight:800;color:var(--ink);min-width:44px;text-align:center}
+.round{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--ink);background:var(--surface);color:var(--ink);font-size:22px;font-weight:700;cursor:pointer;line-height:1}
+.choice{display:block;width:100%;text-align:left;background:var(--surface);border:1.5px solid var(--line);border-radius:var(--radius);padding:14px;margin-bottom:10px;cursor:pointer}
+.choice[aria-pressed="true"]{border-color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink);background:#F4F7FA}
+.choice b{display:block;color:var(--ink);font-size:16px}
+.choice span{font-size:14px;color:var(--muted)}
+.pict{display:flex;gap:12px;align-items:center}
+.pict svg{flex:none}
+.script{background:#F4F7FA;border-left:4px solid var(--ink);border-radius:8px;padding:12px 14px;font-size:15px;margin:10px 0;white-space:pre-line}
+.seg{display:flex;background:var(--grey-soft);border-radius:12px;padding:4px;gap:4px;margin-bottom:12px}
+.seg button{flex:1;border:0;border-radius:9px;padding:9px 8px;background:transparent;font-weight:600;font-size:14px;cursor:pointer;min-height:40px;color:var(--grey)}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.closing{font-size:20px;font-weight:700;color:var(--ink);text-align:center;padding:18px 8px}
+.receipt{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin-bottom:12px}
+.receipt .head{background:var(--ink);color:#fff;padding:16px}
+.receipt .head .t{font-size:20px;font-weight:800}
+.receipt .head .m{font-size:13px;opacity:.9}
+.receipt .body{padding:16px}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.kpi{background:var(--bg);border-radius:10px;padding:10px}
+.kpi .v{font-size:20px;font-weight:800;color:var(--ink)}
+.kpi .k{font-size:12px;color:var(--muted);line-height:1.3}
+ol.ladder{list-style:none;margin:0;padding:0}
+ol.ladder li{display:grid;grid-template-columns:28px 1fr auto;gap:10px;align-items:start;padding:10px 0;border-top:1px solid var(--line)}
+ol.ladder li:first-child{border-top:0}
+.dot{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:800;background:var(--grey-soft);color:var(--grey)}
+.dot.ok{background:var(--green);color:#fff}
+.dot.wait{background:var(--saffron);color:#1A1A1A}
+.rung b{display:block;font-size:15px;color:var(--ink)}
+.rung span{font-size:13px;color:var(--muted)}
+.st{font-size:11px;font-weight:800;letter-spacing:.05em;padding:4px 8px;border-radius:999px;white-space:nowrap}
+.st.ok{background:var(--green-soft);color:var(--green)}
+.st.wait{background:var(--saffron-soft);color:var(--amber)}
+.st.no{background:var(--grey-soft);color:var(--grey)}
+.say{background:var(--green-soft);border-radius:10px;padding:12px 14px;font-size:14px;color:#173F28;margin:12px 0}
+.notsay{background:var(--grey-soft);border-radius:10px;padding:12px 14px;font-size:14px;color:#333;margin:0 0 12px}
+.safety{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--text);background:#F4F7FA;border-radius:10px;padding:12px 14px}
+textarea.wa{width:100%;min-height:200px;border:1px solid var(--line);border-radius:10px;padding:10px;font:14px/1.45 ui-monospace,Consolas,monospace;background:#FBFBF9;color:var(--text);resize:vertical}
+body.hi textarea.wa{font-family:var(--deva)}
+.field{margin-bottom:14px}
+.field label,.field legend{display:block;font-weight:700;font-size:14px;color:var(--ink);margin-bottom:6px}
+.field input[type=number],.field select{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;min-height:44px;background:var(--surface)}
+fieldset{border:0;padding:0;margin:0 0 14px}
+.radio{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1.5px solid var(--line);border-radius:10px;margin-bottom:6px;background:var(--surface);cursor:pointer}
+.radio input{width:20px;height:20px;accent-color:var(--ink)}
+table.log{width:100%;border-collapse:collapse;font-size:14px}
+table.log th{text-align:left;font-size:12px;color:var(--muted);font-weight:700;padding:6px 4px;border-bottom:1px solid var(--line)}
+table.log td{padding:8px 4px;border-bottom:1px solid var(--line)}
+table.log td.num{text-align:right;font-variant-numeric:tabular-nums}
+.chart{width:100%;height:auto;display:block}
+.sample{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--maroon);border:1.5px solid var(--maroon);border-radius:999px;padding:2px 8px;vertical-align:middle}
+nav.tabs{position:absolute;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr)}
+nav.tabs button{border:0;background:transparent;padding:8px 2px 10px;min-height:60px;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px}
+nav.tabs button[aria-current="page"]{color:var(--ink)}
+nav.tabs button[aria-current="page"] svg{stroke:var(--ink)}
+nav.tabs svg{stroke:#7A8088}
+.toast{position:absolute;left:16px;right:16px;bottom:76px;background:var(--ink);color:#fff;border-radius:12px;padding:12px 14px;font-size:14px;transform:translateY(20px);opacity:0;transition:.2s;pointer-events:none}
+.toast.show{transform:none;opacity:1}
+.list-plain{margin:0;padding-left:18px;font-size:14px;color:var(--muted)}
+.list-plain li{margin-bottom:6px}
+.mt{margin-top:12px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{
+  body{background:#fff}.page{display:block;padding:0}.notes,.top,.banner,nav.tabs,.noprint{display:none!important}
+  .phone{box-shadow:none;max-width:none;height:auto;overflow:visible}main{padding:0;overflow:visible}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <aside class="notes" aria-label="About this prototype">
+    <span class="kicker">PROTOTYPE · SAMPLE DATA</span>
+    <h1>Seva Circle and Trust Receipt</h1>
+    <p>A clickable prototype of two service ideas from the Aham Brahmasmi project, rebuilt for the Follow-Through thesis. It shows how the service would feel. It does not show results.</p>
+    <div class="box">
+      <h2>What is real here</h2>
+      <p>Nothing in this demo is field data. Every weight, date, head-count and destination is sample data written for the demo. No circle, collector, aggregator or recycler has used it.</p>
+    </div>
+    <div class="box">
+      <h2>What it is built to test (planned)</h2>
+      <ul>
+        <li><b>Trust Receipt:</b> does telling a group where its waste went raise segregation quality and repeat participation?</li>
+        <li><b>Seva Circle:</b> does a 10-minute weekly routine keep people taking part after week one?</li>
+        <li><b>Framing:</b> does a cultural (seva) frame beat a secular ownership frame? Both are offered; neither is required.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h2>Deliberately left out</h2>
+      <p>Scripture quotations (not yet checked by a scholar), points and leaderboards, app-store badges and any impact claim above rung 3 of the Claim Ladder. The first field version runs on paper cards and WhatsApp; this screen flow is the specification for that.</p>
+    </div>
+    <p class="mt">Keyboard: Tab moves between controls; Enter or Space activates them.</p>
+  </aside>
+
+  <div class="phone" id="app">
+    <header class="top">
+      <div class="brand">Aham Brahmasmi <small data-i18n="sub">Seva Circle · Trust Receipt</small></div>
+      <span class="chip-proto" title="Prototype: not a live service">PROTOTYPE</span>
+      <button class="lang" id="langBtn" aria-label="Switch language to Hindi">हिं</button>
+    </header>
+    <div class="banner" role="note"><strong data-i18n="bannerA">Prototype with sample data.</strong> <span data-i18n="bannerB">Not a live service. No real users, weights or partners.</span></div>
+    <main id="view" tabindex="-1" aria-live="polite"></main>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <nav class="tabs" aria-label="Main">
+      <button data-tab="home"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span data-i18n="tHome">Home</span></button>
+      <button data-tab="circle"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="4" r="2"/><circle cx="20" cy="12" r="2"/><circle cx="12" cy="20" r="2"/><circle cx="4" cy="12" r="2"/></svg><span data-i18n="tCircle">Seva Circle</span></button>
+      <button data-tab="receipt"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg><span data-i18n="tReceipt">Receipt</span></button>
+      <button data-tab="log"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><span data-i18n="tLog">Log</span></button>
+      <button data-tab="about"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg><span data-i18n="tAbout">About</span></button>
+    </nav>
+  </div>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+/* ---------- copy (English / Hindi). Hindi copy needs a native-speaker check before field use. ---------- */
+const T = {
+ en:{
+  sub:"Seva Circle · Trust Receipt", bannerA:"Prototype with sample data.", bannerB:"Not a live service. No real users, weights or partners.",
+  tHome:"Home", tCircle:"Seva Circle", tReceipt:"Receipt", tLog:"Log", tAbout:"About",
+  circleName:"Block B Circle", sample:"SAMPLE",
+  homeTitle:"This week", homeSub:"A 10-minute routine, one handover, one honest receipt.",
+  nextCircle:"Next Seva Circle", nextWhen:"Sunday, 8:00 am · 10 minutes", start:"Start this week’s circle",
+  lastReceipt:"Last Trust Receipt", openReceipt:"Open receipt", rungsOf:"of 6 claim rungs evidenced",
+  howTitle:"How it works", how1:"Meet for 10 minutes, once a week.", how2:"Hand over separated waste to the collector.", how3:"Get a receipt that says where it went, and what we cannot yet prove.",
+  c1:"Gather", c2:"This week’s idea", c3:"Last week’s receipt", c4:"One commitment", c5:"Close",
+  gatherT:"Who is here today?", gatherS:"We count heads, not names. Nothing personal is stored.",
+  newP:"First time", retP:"Came before", total:"Total present",
+  ideaT:"Pick one idea to talk about", ideaS:"One idea per week. Show the card, read the script, ask one question.",
+  readT:"Read last week’s receipt aloud", readS:"People hear what happened to what they handed over.",
+  commitT:"Choose one small commitment", commitS:"The group picks one. Count raised hands if people want to.",
+  hands:"Hands raised",
+  closeT:"Close the circle", closeS:"Choose the frame for this group. Both are voluntary; neither asks anyone to follow a faith.",
+  frameA:"Ownership frame", frameB:"Seva frame",
+  closeA:"This place is ours. We keep it in order together.",
+  closeB:"Seva done together is seva done well.",
+  back:"Back", next:"Next", save:"Save session",
+  saved:"Session saved on this device (sample only).",
+  needIdea:"Pick an idea to continue.", needCommit:"Pick a commitment to continue.",
+  question:"Ask the group:",
+  ideas:[
+   {id:"dry", t:"Keep sachets dry and separate", d:"Empty, dry, into the blue bag.", s:"Empty the sachet and keep it dry. Wet or dirty sachets cannot be packed into ecobricks or sold, so they end up burnt or dumped.", q:"Where do sachets pile up around us?"},
+   {id:"sharp", t:"Wrap sharp items before handover", d:"Ahimsa Safety Link: protect the collector’s hands.", s:"The person who collects our waste sorts it by hand. Broken glass and blades cut them. Wrap sharp things in paper and tell the collector.", q:"Who has seen a collector get hurt?"},
+   {id:"wet", t:"Food waste only in the green bin", d:"Wet stays wet, dry stays dry.", s:"One spoon of dal on a bag of wrappers spoils the whole bag. Keep food in the green bin and the dry bag stays clean and useful.", q:"What makes it hard to keep two bins?"}
+  ],
+  commits:[
+   {id:"bag", t:"Blue bag for every sachet this week"},
+   {id:"wrap", t:"No sharp item handed over unwrapped"},
+   {id:"check", t:"One person checks the bag before handover"}
+  ],
+  rTitle:"Segregation honoured", rBatch:"Batch", rGave:"Handed over", rMix:"Mixed in", rDel:"Delivered",
+  ladder:"Claim Ladder: what this receipt can prove",
+  rung:["Collected","Segregated and checked","Delivered to a named destination","Processed by the receiver","Reintegrated into new products","Environmental outcome (life-cycle evidence)"],
+  ev:"EVIDENCED", pend:"PENDING", notc:"NOT CLAIMED",
+  canSay:"What we can say", cannotSay:"What we cannot say yet",
+  safetyOk:"Sharp items this week: all wrapped. Thank you for protecting the collector.",
+  safetyNo:"Sharp items this week: some unwrapped. Please wrap glass and blades next time.",
+  copyWA:"Copy WhatsApp text", print:"Print card", copied:"Copied. Paste it into the group chat.",
+  copyFail:"Select the text and copy it manually.",
+  addDelivery:"Add delivery evidence", addProcess:"Add processing evidence",
+  newHandover:"Log a new handover",
+  formT:"Log a handover", formS:"The collector fills this at handover. Weights come from the hanging scale.",
+  fLow:"Sachets and wrappers (kg)", fRec:"Bottles, paper, metal (kg)", fRej:"Rejects (kg)",
+  fMix:"How mixed was it?", mix0:"Clean (under 5% mixed in)", mix1:"Some mixing (about 10%)", mix2:"Heavily mixed (over 25%)",
+  fSharp:"Sharp items", sharp0:"None or all wrapped", sharp1:"Some unwrapped",
+  fDest:"Where do the sachets go?", d0:"Ecobrick station (sample)", d1:"Cement co-processor (sample)", d2:"Local aggregator (sample)",
+  fEv:"Evidence at handover", e0:"Collector’s signed slip", e1:"Photo of the scale",
+  submit:"Create receipt", cancel:"Cancel", invalid:"Enter at least one weight above zero.",
+  logT:"Impact log", logS:"Four measures from the thesis plan, week by week.",
+  wk:"Week", ppl:"People", ret:"Returning", kg:"kg", mixp:"Mixed %",
+  retRate:"Repeat participation (last 4 weeks)", kgWeek:"Kilograms handed over per week",
+  aboutT:"About this prototype",
+  reset:"Reset demo data", resetDone:"Demo data reset.",
+  footSample:"All figures on this screen are sample data written for the demo."
+ },
+ hi:{
+  sub:"सेवा मंडल · भरोसे की रसीद", bannerA:"नमूना डेटा वाला प्रोटोटाइप।", bannerB:"यह चालू सेवा नहीं है। कोई असली उपयोगकर्ता, वज़न या साझेदार नहीं।",
+  tHome:"होम", tCircle:"सेवा मंडल", tReceipt:"रसीद", tLog:"लॉग", tAbout:"जानकारी",
+  circleName:"ब्लॉक B मंडल", sample:"नमूना",
+  homeTitle:"इस हफ़्ते", homeSub:"10 मिनट की बैठक, एक बार सौंपना, एक सच्ची रसीद।",
+  nextCircle:"अगला सेवा मंडल", nextWhen:"रविवार, सुबह 8 बजे · 10 मिनट", start:"इस हफ़्ते का मंडल शुरू करें",
+  lastReceipt:"पिछली भरोसे की रसीद", openReceipt:"रसीद खोलें", rungsOf:"में से दावे की सीढ़ियाँ प्रमाण सहित (कुल 6)",
+  howTitle:"यह कैसे चलता है", how1:"हफ़्ते में एक बार, 10 मिनट मिलें।", how2:"अलग किया हुआ कचरा संग्राहक को सौंपें।", how3:"रसीद पाएँ: कचरा कहाँ गया, और क्या अभी साबित नहीं है।",
+  c1:"इकट्ठा", c2:"इस हफ़्ते की बात", c3:"पिछली रसीद", c4:"एक संकल्प", c5:"समापन",
+  gatherT:"आज कौन-कौन आया है?", gatherS:"हम सिर्फ़ गिनती रखते हैं, नाम नहीं। कोई निजी जानकारी नहीं रखी जाती।",
+  newP:"पहली बार", retP:"पहले भी आए", total:"कुल उपस्थित",
+  ideaT:"बात करने के लिए एक विषय चुनें", ideaS:"हर हफ़्ते एक बात। कार्ड दिखाएँ, पढ़ें, एक सवाल पूछें।",
+  readT:"पिछली रसीद ज़ोर से पढ़ें", readS:"लोग सुनते हैं कि उनके दिए कचरे का क्या हुआ।",
+  commitT:"एक छोटा संकल्प चुनें", commitS:"समूह एक चुनता है। चाहें तो उठे हाथ गिनें।",
+  hands:"उठे हाथ",
+  closeT:"मंडल का समापन", closeS:"इस समूह के लिए भाषा चुनें। दोनों स्वैच्छिक हैं; किसी से कोई धर्म मानने को नहीं कहा जाता।",
+  frameA:"अपनेपन की भाषा", frameB:"सेवा की भाषा",
+  closeA:"यह जगह हमारी है। हम मिलकर इसे साफ़ रखते हैं।",
+  closeB:"मिलकर की गई सेवा ही सच्ची सेवा है।",
+  back:"पीछे", next:"आगे", save:"बैठक सहेजें",
+  saved:"बैठक इस डिवाइस पर सहेजी गई (सिर्फ़ नमूना)।",
+  needIdea:"आगे बढ़ने के लिए एक विषय चुनें।", needCommit:"आगे बढ़ने के लिए एक संकल्प चुनें।",
+  question:"समूह से पूछें:",
+  ideas:[
+   {id:"dry", t:"पाउच सूखे और अलग रखें", d:"खाली करें, सुखाएँ, नीले थैले में डालें।", s:"पाउच खाली करें और सूखा रखें। गीले या गंदे पाउच न इकोब्रिक में भरे जा सकते हैं, न बिकते हैं, इसलिए वे जलाए या फेंक दिए जाते हैं।", q:"हमारे आसपास पाउच कहाँ जमा होते हैं?"},
+   {id:"sharp", t:"धारदार चीज़ें लपेटकर दें", d:"अहिंसा सुरक्षा कड़ी: संग्राहक के हाथ बचाएँ।", s:"जो हमारा कचरा उठाते हैं, वे उसे हाथ से छाँटते हैं। टूटा काँच और ब्लेड उन्हें काटते हैं। धारदार चीज़ें काग़ज़ में लपेटें और संग्राहक को बताएँ।", q:"किसने किसी संग्राहक को चोट लगते देखा है?"},
+   {id:"wet", t:"खाने का कचरा सिर्फ़ हरे डिब्बे में", d:"गीला अलग, सूखा अलग।", s:"रैपर के थैले पर एक चम्मच दाल पूरा थैला ख़राब कर देती है। खाना हरे डिब्बे में रखें, तो सूखा थैला साफ़ और काम का रहता है।", q:"दो डिब्बे रखने में क्या मुश्किल आती है?"}
+  ],
+  commits:[
+   {id:"bag", t:"इस हफ़्ते हर पाउच नीले थैले में"},
+   {id:"wrap", t:"कोई धारदार चीज़ बिना लपेटे नहीं"},
+   {id:"check", t:"सौंपने से पहले एक व्यक्ति थैला जाँचे"}
+  ],
+  rTitle:"आपकी छँटाई का मान रखा गया", rBatch:"बैच", rGave:"सौंपा", rMix:"मिलावट", rDel:"पहुँचाया",
+  ladder:"दावे की सीढ़ी: यह रसीद क्या साबित कर सकती है",
+  rung:["इकट्ठा किया","छाँटा और जाँचा","तय जगह पर पहुँचाया","लेने वाले ने प्रोसेस किया","नए उत्पाद में लौटा","पर्यावरण पर असर (जीवन-चक्र प्रमाण)"],
+  ev:"प्रमाण सहित", pend:"लंबित", notc:"दावा नहीं",
+  canSay:"हम क्या कह सकते हैं", cannotSay:"हम अभी क्या नहीं कह सकते",
+  safetyOk:"इस हफ़्ते सभी धारदार चीज़ें लिपटी थीं। संग्राहक की सुरक्षा के लिए धन्यवाद।",
+  safetyNo:"इस हफ़्ते कुछ धारदार चीज़ें बिना लपेटे थीं। अगली बार काँच और ब्लेड लपेटें।",
+  copyWA:"व्हाट्सऐप संदेश कॉपी करें", print:"कार्ड प्रिंट करें", copied:"कॉपी हो गया। ग्रुप में पेस्ट करें।",
+  copyFail:"टेक्स्ट चुनकर ख़ुद कॉपी करें।",
+  addDelivery:"पहुँचाने का प्रमाण जोड़ें", addProcess:"प्रोसेसिंग का प्रमाण जोड़ें",
+  newHandover:"नया हैंडओवर दर्ज करें",
+  formT:"हैंडओवर दर्ज करें", formS:"संग्राहक सौंपते समय भरते हैं। वज़न लटकने वाले तराज़ू से।",
+  fLow:"पाउच और रैपर (किलो)", fRec:"बोतल, काग़ज़, धातु (किलो)", fRej:"बेकार (किलो)",
+  fMix:"कितनी मिलावट थी?", mix0:"साफ़ (5% से कम)", mix1:"थोड़ी मिलावट (लगभग 10%)", mix2:"बहुत मिलावट (25% से ज़्यादा)",
+  fSharp:"धारदार चीज़ें", sharp0:"कोई नहीं या सब लिपटी", sharp1:"कुछ बिना लपेटे",
+  fDest:"पाउच कहाँ जाएँगे?", d0:"इकोब्रिक केंद्र (नमूना)", d1:"सीमेंट को-प्रोसेसर (नमूना)", d2:"स्थानीय कबाड़ी (नमूना)",
+  fEv:"सौंपते समय प्रमाण", e0:"संग्राहक की हस्ताक्षरित पर्ची", e1:"तराज़ू की फ़ोटो",
+  submit:"रसीद बनाएँ", cancel:"रद्द करें", invalid:"कम से कम एक वज़न शून्य से ज़्यादा भरें।",
+  logT:"असर का लॉग", logS:"थीसिस योजना के चार माप, हफ़्ते-दर-हफ़्ते।",
+  wk:"हफ़्ता", ppl:"लोग", ret:"दोबारा आए", kg:"किलो", mixp:"मिलावट %",
+  retRate:"दोबारा भागीदारी (पिछले 4 हफ़्ते)", kgWeek:"हर हफ़्ते सौंपे गए किलो",
+  aboutT:"इस प्रोटोटाइप के बारे में",
+  reset:"डेमो डेटा रीसेट करें", resetDone:"डेमो डेटा रीसेट हो गया।",
+  footSample:"इस स्क्रीन के सभी आँकड़े डेमो के लिए लिखे गए नमूना डेटा हैं।"
+ }
+};
+
+/* ---------- sample data (fictional, for the demo only) ---------- */
+function seed(){
+ return {
+  weeks:[ // new, returning, kg, mixed %
+   {w:1,n:14,r:0, kg:2.1,mix:22},
+   {w:2,n:6, r:9, kg:2.9,mix:18},
+   {w:3,n:4, r:11,kg:3.4,mix:12},
+   {w:4,n:3, r:10,kg:3.0,mix:14},
+   {w:5,n:2, r:12,kg:3.6,mix:12},
+   {w:6,n:3, r:12,kg:4.2,mix:8}
+  ],
+  batches:[
+   {id:"B-0412", date:"2026-11-09", low:3.1, rec:1.1, rej:0.0, mix:8, sharp:0, dest:0, ev:0, rungs:[2,2,2,1,0,0]}
+  ],
+  current:"B-0412"
+ };
+}
+let S = seed();
+let lang = "en";
+let tab = "home";
+let flow = {step:1, n:0, r:0, idea:null, commit:null, hands:0, frame:"A"};
+let formOpen = false;
+
+const $ = s => document.querySelector(s);
+const view = $("#view");
+const t = k => T[lang][k];
+const fmt = x => (Math.round(x*10)/10).toLocaleString(lang==="hi"?"hi-IN":"en-IN",{minimumFractionDigits:1,maximumFractionDigits:1});
+const esc = s => String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
+const dateStr = iso => new Date(iso+"T12:00:00").toLocaleDateString(lang==="hi"?"hi-IN":"en-GB",{day:"numeric",month:"short",year:"numeric"});
+function batch(){ return S.batches.find(b=>b.id===S.current) || S.batches[0]; }
+function evidenced(b){ return b.rungs.filter(x=>x===2).length; }
+function toast(msg){ const el=$("#toast"); el.textContent=msg; el.classList.add("show"); clearTimeout(toast._t); toast._t=setTimeout(()=>el.classList.remove("show"),2600); }
+
+/* ---------- pictograms for idea cards ---------- */
+const PICT = {
+ dry:'<svg width="56" height="56" viewBox="0 0 56 56" aria-hidden="true"><rect x="8" y="10" width="40" height="40" rx="8" fill="#DCE6F0"/><path d="M18 22h20v20H18z" fill="#1A3A52"/><path d="M22 18h12l2 4H20z" fill="#4A9FB5"/><path d="M24 30l4 4 6-8" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/></svg>',
+ sharp:'<svg width="56" height="56" viewBox="0 0 56 56" aria-hidden="true"><rect x="8" y="10" width="40" height="40" rx="8" fill="#FFF1DC"/><path d="M16 38l12-20 4 3-10 19z" fill="#8B4545"/><rect x="14" y="34" width="28" height="9" rx="3" fill="#D4A574"/><path d="M36 22c4 2 6 6 5 10" stroke="#1A3A52" stroke-width="3" fill="none" stroke-linecap="round"/></svg>',
+ wet:'<svg width="56" height="56" viewBox="0 0 56 56" aria-hidden="true"><rect x="8" y="10" width="40" height="40" rx="8" fill="#E3F1E8"/><path d="M18 24h20l-2 18H20z" fill="#2D7D4D"/><rect x="16" y="20" width="24" height="4" rx="2" fill="#22663F"/><circle cx="28" cy="33" r="4" fill="#B8D4C8"/></svg>'
+};
+
+/* ---------- screens ---------- */
+function home(){
+ const b = batch();
+ const total = b.low+b.rec+b.rej;
+ return `
+ <h2 class="screen">${t("homeTitle")}</h2>
+ <p class="sub">${t("homeSub")}</p>
+ <div class="card">
+  <div class="label">${t("circleName")} <span class="sample">${t("sample")}</span></div>
+  <h3 class="mt">${t("nextCircle")}</h3>
+  <p>${t("nextWhen")}</p>
+  <button class="btn full" data-go="circle">${t("start")}</button>
+ </div>
+ <div class="card">
+  <div class="label">${t("lastReceipt")} · ${esc(b.id)} <span class="sample">${t("sample")}</span></div>
+  <div class="row mt" style="justify-content:space-between">
+   <div><div class="big">${fmt(total)} ${t("kg")}</div><p>${evidenced(b)} ${t("rungsOf")}</p></div>
+  </div>
+  <button class="btn sec full" data-go="receipt">${t("openReceipt")}</button>
+ </div>
+ <div class="card">
+  <h3>${t("howTitle")}</h3>
+  <ol class="list-plain"><li>${t("how1")}</li><li>${t("how2")}</li><li>${t("how3")}</li></ol>
+ </div>`;
+}
+
+function stepsBar(){ return '<div class="steps" aria-hidden="true">'+[1,2,3,4,5].map(i=>`<span class="${i<=flow.step?"on":""}"></span>`).join("")+'</div>'; }
+function circle(){
+ const names=[t("c1"),t("c2"),t("c3"),t("c4"),t("c5")];
+ let body="";
+ if(flow.step===1){
+  body=`<h2 class="screen">${t("gatherT")}</h2><p class="sub">${t("gatherS")}</p>
+  <div class="card">
+   ${counter("n",t("newP"),flow.n)}
+   ${counter("r",t("retP"),flow.r)}
+   <div class="counter"><span><b>${t("total")}</b></span><span class="n" aria-live="polite">${flow.n+flow.r}</span><span style="width:96px"></span></div>
+  </div>`;
+ } else if(flow.step===2){
+  body=`<h2 class="screen">${t("ideaT")}</h2><p class="sub">${t("ideaS")}</p>`+
+  t("ideas").map(i=>`<button class="choice pict" data-idea="${i.id}" aria-pressed="${flow.idea===i.id}">${PICT[i.id]}<span><b>${esc(i.t)}</b><span>${esc(i.d)}</span></span></button>`).join("");
+  const sel=t("ideas").find(i=>i.id===flow.idea);
+  if(sel) body+=`<div class="script">${esc(sel.s)}</div><p class="sub"><b>${t("question")}</b> ${esc(sel.q)}</p>`;
+ } else if(flow.step===3){
+  body=`<h2 class="screen">${t("readT")}</h2><p class="sub">${t("readS")}</p><div class="script">${esc(receiptText(batch()))}</div>`;
+ } else if(flow.step===4){
+  body=`<h2 class="screen">${t("commitT")}</h2><p class="sub">${t("commitS")}</p>`+
+  t("commits").map(c=>`<button class="choice" data-commit="${c.id}" aria-pressed="${flow.commit===c.id}"><b>${esc(c.t)}</b></button>`).join("")+
+  `<div class="card">${counter("hands",t("hands"),flow.hands)}</div>`;
+ } else {
+  body=`<h2 class="screen">${t("closeT")}</h2><p class="sub">${t("closeS")}</p>
+  <div class="seg" role="group" aria-label="${t("closeT")}">
+   <button data-frame="A" aria-pressed="${flow.frame==="A"}">${t("frameA")}</button>
+   <button data-frame="B" aria-pressed="${flow.frame==="B"}">${t("frameB")}</button>
+  </div>
+  <div class="card"><div class="closing">${flow.frame==="A"?t("closeA"):t("closeB")}</div></div>`;
+ }
+ const prev = flow.step>1 ? `<button class="btn sec" data-step="-1">${t("back")}</button>` : "";
+ const nextBtn = flow.step<5 ? `<button class="btn" style="flex:1" data-step="1">${t("next")}</button>` : `<button class="btn" style="flex:1" data-save>${t("save")}</button>`;
+ return `<div class="label">${names[flow.step-1]} · ${flow.step}/5</div>${stepsBar()}${body}<div class="row mt">${prev}${nextBtn}</div>`;
+}
+function counter(key,label,val){
+ return `<div class="counter"><span><b>${label}</b></span>
+  <span class="row"><button class="round" data-dec="${key}" aria-label="${label} −">−</button><span class="n" aria-live="polite">${val}</span><button class="round" data-inc="${key}" aria-label="${label} +">+</button></span></div>`;
+}
+
+function rungState(v){ return v===2?["ok",t("ev")]:v===1?["wait",t("pend")]:["no",t("notc")]; }
+function destName(i){ return [t("d0"),t("d1"),t("d2")][i]; }
+function evName(i){ return [t("e0"),t("e1")][i]; }
+function rungNote(b,i){
+ const en = lang==="en";
+ const notes = [
+  en?`${fmt(b.low+b.rec+b.rej)} kg weighed at handover · ${evName(b.ev)}`:`सौंपते समय ${fmt(b.low+b.rec+b.rej)} किलो तौला · ${evName(b.ev)}`,
+  en?`Collector check: about ${b.mix}% mixed in`:`संग्राहक की जाँच: लगभग ${b.mix}% मिलावट`,
+  b.rungs[2]===2 ? (en?`${fmt(b.low)} kg to ${destName(b.dest)} · delivery slip`:`${fmt(b.low)} किलो ${destName(b.dest)} को · डिलीवरी पर्ची`) : (en?"Waiting for a delivery slip":"डिलीवरी पर्ची का इंतज़ार"),
+  b.rungs[3]===2 ? (en?"Receiver’s intake record attached":"लेने वाले का इनटेक रिकॉर्ड जुड़ा") : (en?"Needs the receiver’s intake or processing record":"लेने वाले का इनटेक या प्रोसेसिंग रिकॉर्ड चाहिए"),
+  en?"Not tracked in this pilot. Would need recycler output data.":"इस पायलट में ट्रैक नहीं। रीसाइक्लर का आउटपुट डेटा चाहिए।",
+  en?"Not claimed. Would need a life-cycle assessment.":"दावा नहीं। जीवन-चक्र आकलन (LCA) चाहिए।"
+ ];
+ return notes[i];
+}
+function canSay(b){
+ const en = lang==="en"; const top = b.rungs.lastIndexOf(2);
+ const total = fmt(b.low+b.rec+b.rej);
+ if(top>=3) return en?`Your circle’s ${total} kg was collected, checked, delivered and taken in by the receiver.`:`आपके मंडल का ${total} किलो इकट्ठा हुआ, जाँचा गया, पहुँचाया गया और लेने वाले ने स्वीकार किया।`;
+ if(top>=2) return en?`Your circle’s ${total} kg was collected, checked and delivered: ${fmt(b.low)} kg to ${destName(b.dest)}.`:`आपके मंडल का ${total} किलो इकट्ठा हुआ, जाँचा गया और पहुँचाया गया: ${fmt(b.low)} किलो ${destName(b.dest)} को।`;
+ return en?`Your circle’s ${total} kg was collected and checked. Delivery is not yet evidenced.`:`आपके मंडल का ${total} किलो इकट्ठा हुआ और जाँचा गया। पहुँचाने का प्रमाण अभी नहीं।`;
+}
+function cannotSay(b){
+ const en = lang==="en";
+ return en?"That it became new products, or how much carbon it saved. We will not claim either without evidence.":"कि यह नए उत्पाद बना, या कितना कार्बन बचा। बिना प्रमाण हम ये दावे नहीं करेंगे।";
+}
+function receiptText(b){
+ const en = lang==="en"; const total=b.low+b.rec+b.rej;
+ const lines = [];
+ lines.push(`${t("rTitle")} · ${t("circleName")} (${t("sample")})`);
+ lines.push(`${t("rBatch")} ${b.id} · ${dateStr(b.date)}`);
+ lines.push(en?`You handed over: ${fmt(total)} kg`:`आपने सौंपा: ${fmt(total)} किलो`);
+ lines.push(en?`• ${fmt(b.low)} kg sachets and wrappers → ${destName(b.dest)}${b.rungs[2]===2?" (delivery slip ✓)":" (delivery pending)"}`:`• ${fmt(b.low)} किलो पाउच और रैपर → ${destName(b.dest)}${b.rungs[2]===2?" (डिलीवरी पर्ची ✓)":" (डिलीवरी लंबित)"}`);
+ if(b.rec>0) lines.push(en?`• ${fmt(b.rec)} kg bottles, paper, metal → ${t("d2")}`:`• ${fmt(b.rec)} किलो बोतल, काग़ज़, धातु → ${t("d2")}`);
+ lines.push(en?`Mixed in: about ${b.mix}%`:`मिलावट: लगभग ${b.mix}%`);
+ lines.push(b.sharp===0?t("safetyOk"):t("safetyNo"));
+ lines.push(en?"Not yet confirmed: recycling into new products.":"अभी पुष्टि नहीं: नए उत्पादों में रीसाइक्लिंग।");
+ lines.push(en?"Next circle: Sunday 8 am. Thank you.":"अगला मंडल: रविवार सुबह 8 बजे। धन्यवाद।");
+ return lines.join("\n");
+}
+function receipt(){
+ if(formOpen) return handoverForm();
+ const b = batch(); const total=b.low+b.rec+b.rej;
+ const delivered = b.rungs[2]===2 ? b.low : 0;
+ const sel = S.batches.length>1 ? `<div class="field noprint"><label for="bsel">${t("rBatch")}</label><select id="bsel">${S.batches.map(x=>`<option value="${x.id}" ${x.id===b.id?"selected":""}>${x.id} · ${dateStr(x.date)}</option>`).join("")}</select></div>` : "";
+ return `${sel}
+ <article class="receipt" aria-label="${t("rTitle")}">
+  <div class="head"><div class="t">${t("rTitle")}</div><div class="m">${t("circleName")} · ${t("rBatch")} ${esc(b.id)} · ${dateStr(b.date)} · ${t("sample")}</div></div>
+  <div class="body">
+   <div class="kpis">
+    <div class="kpi"><div class="v">${fmt(total)}</div><div class="k">${t("kg")} · ${t("rGave")}</div></div>
+    <div class="kpi"><div class="v">${b.mix}%</div><div class="k">${t("rMix")}</div></div>
+    <div class="kpi"><div class="v">${fmt(delivered)}</div><div class="k">${t("kg")} · ${t("rDel")}</div></div>
+   </div>
+   <div class="label">${t("ladder")}</div>
+   <ol class="ladder">${b.rungs.map((v,i)=>{const [c,l]=rungState(v);return `<li><span class="dot ${c==="ok"?"ok":c==="wait"?"wait":""}" aria-hidden="true">${i+1}</span><span class="rung"><b>${t("rung")[i]}</b><span>${esc(rungNote(b,i))}</span></span><span class="st ${c}">${l}</span></li>`}).join("")}</ol>
+   <div class="say"><b>${t("canSay")}:</b> ${esc(canSay(b))}</div>
+   <div class="notsay"><b>${t("cannotSay")}:</b> ${esc(cannotSay(b))}</div>
+   <div class="safety"><span aria-hidden="true">🤝</span><span>${b.sharp===0?t("safetyOk"):t("safetyNo")}</span></div>
+  </div>
+ </article>
+ <div class="row noprint">
+  ${b.rungs[2]!==2?`<button class="btn" data-adv="2">${t("addDelivery")}</button>`:""}
+  ${b.rungs[2]===2&&b.rungs[3]!==2?`<button class="btn sec" data-adv="3">${t("addProcess")}</button>`:""}
+ </div>
+ <div class="card mt noprint">
+  <label class="label" for="wa">${t("copyWA")}</label>
+  <textarea id="wa" class="wa mt" readonly>${esc(receiptText(b))}</textarea>
+  <div class="row mt"><button class="btn" data-copy>${t("copyWA")}</button><button class="btn sec" data-print>${t("print")}</button></div>
+ </div>
+ <button class="btn sec full noprint" data-form>${t("newHandover")}</button>`;
+}
+function handoverForm(){
+ return `<h2 class="screen">${t("formT")}</h2><p class="sub">${t("formS")}</p>
+ <form id="hform" novalidate>
+  <div class="field"><label for="fLow">${t("fLow")}</label><input id="fLow" type="number" inputmode="decimal" min="0" step="0.1" value="2.5"></div>
+  <div class="field"><label for="fRec">${t("fRec")}</label><input id="fRec" type="number" inputmode="decimal" min="0" step="0.1" value="0.8"></div>
+  <div class="field"><label for="fRej">${t("fRej")}</label><input id="fRej" type="number" inputmode="decimal" min="0" step="0.1" value="0.2"></div>
+  <fieldset><legend>${t("fMix")}</legend>
+   ${[t("mix0"),t("mix1"),t("mix2")].map((m,i)=>`<label class="radio"><input type="radio" name="mix" value="${[4,10,28][i]}" ${i===1?"checked":""}> ${m}</label>`).join("")}
+  </fieldset>
+  <fieldset><legend>${t("fSharp")}</legend>
+   <label class="radio"><input type="radio" name="sharp" value="0" checked> ${t("sharp0")}</label>
+   <label class="radio"><input type="radio" name="sharp" value="1"> ${t("sharp1")}</label>
+  </fieldset>
+  <div class="field"><label for="fDest">${t("fDest")}</label><select id="fDest">${[0,1,2].map(i=>`<option value="${i}">${destName(i)}</option>`).join("")}</select></div>
+  <div class="field"><label for="fEv">${t("fEv")}</label><select id="fEv"><option value="0">${t("e0")}</option><option value="1">${t("e1")}</option></select></div>
+  <p class="sub" id="ferr" role="alert"></p>
+  <div class="row"><button type="button" class="btn sec" data-cancel>${t("cancel")}</button><button type="submit" class="btn" style="flex:1">${t("submit")}</button></div>
+ </form>`;
+}
+
+function log(){
+ const W = S.weeks;
+ const last4 = W.slice(-4); const ppl = last4.reduce((a,w)=>a+w.n+w.r,0); const ret = last4.reduce((a,w)=>a+w.r,0);
+ const rate = ppl? Math.round(ret*100/ppl):0;
+ const max = Math.max(...W.map(w=>w.kg||0),1); const bw=36, gap=14, h=120, left=28;
+ const bars = W.map((w,i)=>{ if(w.kg==null){const x=left+i*(bw+gap);return `<text x="${x+bw/2}" y="144" text-anchor="middle" font-size="11" fill="#545B63">—</text><text x="${x+bw/2}" y="166" text-anchor="middle" font-size="11" fill="#545B63">${t("wk")[0]}${w.w}</text>`;} const bh=Math.round(w.kg/max*h);const x=left+i*(bw+gap);return `<rect x="${x}" y="${150-bh}" width="${bw}" height="${bh}" rx="4" fill="#1A3A52"><title>${t("wk")} ${w.w}: ${fmt(w.kg)} ${t("kg")}</title></rect><text x="${x+bw/2}" y="${144-bh}" text-anchor="middle" font-size="11" fill="#262626">${fmt(w.kg)}</text><text x="${x+bw/2}" y="166" text-anchor="middle" font-size="11" fill="#545B63">${t("wk")[0]}${w.w}</text>`}).join("");
+ return `<h2 class="screen">${t("logT")} <span class="sample">${t("sample")}</span></h2><p class="sub">${t("logS")}</p>
+ <div class="card"><div class="label">${t("retRate")}</div><div class="big mt">${rate}%</div><p>${ret} / ${ppl}</p></div>
+ <div class="card"><div class="label">${t("kgWeek")}</div>
+  <svg class="chart mt" viewBox="0 0 340 172" role="img" aria-label="${t("kgWeek")}"><line x1="20" y1="150" x2="330" y2="150" stroke="#E3DED3"/>${bars}</svg>
+ </div>
+ <div class="card"><table class="log"><thead><tr><th>${t("wk")}</th><th>${t("ppl")}</th><th>${t("ret")}</th><th style="text-align:right">${t("kg")}</th><th style="text-align:right">${t("mixp")}</th></tr></thead>
+ <tbody>${W.map(w=>`<tr><td>${w.w}</td><td class="num">${w.n+w.r}</td><td class="num">${w.r}</td><td class="num">${w.kg==null?"—":fmt(w.kg)}</td><td class="num">${w.mix==null?"—":w.mix}</td></tr>`).join("")}</tbody></table></div>
+ <p class="sub">${t("footSample")}</p>`;
+}
+
+function about(){
+ const en = lang==="en";
+ return `<h2 class="screen">${t("aboutT")}</h2>
+ <div class="card"><h3>${en?"Status: PROTOTYPE":"स्थिति: प्रोटोटाइप"}</h3><p>${en?"A clickable model of two service ideas. Sample data only. Not tested with people yet.":"दो सेवा विचारों का क्लिक करने योग्य मॉडल। सिर्फ़ नमूना डेटा। अभी लोगों के साथ परखा नहीं गया।"}</p></div>
+ <div class="card"><h3>${en?"What it will test (PLANNED)":"यह क्या परखेगा (योजना)"}</h3>
+  <ol class="list-plain">
+   <li>${en?"Trust Receipt: does a weekly receipt raise segregation quality and repeat participation, compared with no receipt?":"भरोसे की रसीद: क्या हफ़्तेवार रसीद से छँटाई की गुणवत्ता और दोबारा भागीदारी बढ़ती है?"}</li>
+   <li>${en?"Seva Circle: does a 10-minute weekly routine keep people taking part after week one?":"सेवा मंडल: क्या 10 मिनट की हफ़्तेवार बैठक लोगों को पहले हफ़्ते के बाद भी जोड़े रखती है?"}</li>
+   <li>${en?"Framing: does the seva frame or the ownership frame work better, and for whom?":"भाषा: सेवा की भाषा बेहतर है या अपनेपन की, और किसके लिए?"}</li>
+  </ol></div>
+ <div class="card"><h3>${en?"Claim Ladder":"दावे की सीढ़ी"}</h3><p>${en?"Each receipt climbs only as far as its evidence. Rungs 5 and 6 stay ‘not claimed’ in this pilot.":"हर रसीद उतनी ही ऊपर जाती है जितना प्रमाण है। इस पायलट में सीढ़ी 5 और 6 ‘दावा नहीं’ रहती हैं।"}</p></div>
+ <div class="card"><h3>${en?"Removed on purpose":"जानबूझकर हटाया"}</h3><p>${en?"Scripture quotations (awaiting a scholar’s check), points and leaderboards, app-store badges, and every unsourced percentage from the earlier materials.":"धर्मग्रंथ उद्धरण (विद्वान की जाँच बाकी), पॉइंट और लीडरबोर्ड, ऐप-स्टोर बैज, और पुरानी सामग्री के बिना स्रोत वाले प्रतिशत।"}</p></div>
+ <div class="card"><h3>${en?"Language note":"भाषा नोट"}</h3><p>${en?"Hindi copy is a working draft and needs a native-speaker review before field use.":"हिंदी पाठ कार्यशील मसौदा है; फ़ील्ड में उपयोग से पहले मूल वक्ता से जाँच ज़रूरी है।"}</p></div>
+ <button class="btn sec full" data-reset>${t("reset")}</button>`;
+}
+
+/* ---------- render + events ---------- */
+function render(focus){
+ document.body.classList.toggle("hi", lang==="hi");
+ document.documentElement.lang = lang==="hi"?"hi":"en";
+ document.querySelectorAll("[data-i18n]").forEach(el=>{el.textContent=t(el.dataset.i18n);});
+ $("#langBtn").textContent = lang==="hi"?"EN":"हिं";
+ $("#langBtn").setAttribute("aria-label", lang==="hi"?"Switch language to English":"Switch language to Hindi");
+ document.querySelectorAll("nav.tabs button").forEach(b=>{ if(b.dataset.tab===tab) b.setAttribute("aria-current","page"); else b.removeAttribute("aria-current"); });
+ view.innerHTML = ({home,circle,receipt,log,about})[tab]();
+ if(focus) view.focus({preventScroll:true});
+ view.scrollTop = 0;
+}
+function go(next){ tab=next; formOpen=false; render(true); }
+
+document.querySelector("nav.tabs").addEventListener("click",e=>{const b=e.target.closest("button[data-tab]"); if(b) go(b.dataset.tab);});
+$("#langBtn").addEventListener("click",()=>{lang = lang==="en"?"hi":"en"; render(false);});
+
+view.addEventListener("click",e=>{
+ const el = e.target.closest("button"); if(!el) return;
+ const d = el.dataset;
+ if(d.go){ go(d.go); return; }
+ if(d.inc){ flow[d.inc]++; render(false); return; }
+ if(d.dec){ flow[d.dec]=Math.max(0,flow[d.dec]-1); render(false); return; }
+ if(d.idea){ flow.idea=d.idea; render(false); return; }
+ if(d.commit){ flow.commit=d.commit; render(false); return; }
+ if(d.frame){ flow.frame=d.frame; render(false); return; }
+ if(d.step){
+  const dir=+d.step;
+  if(dir>0 && flow.step===2 && !flow.idea){ toast(t("needIdea")); return; }
+  if(dir>0 && flow.step===4 && !flow.commit){ toast(t("needCommit")); return; }
+  flow.step=Math.min(5,Math.max(1,flow.step+dir)); render(true); return;
+ }
+ if("save" in d){
+  const last=S.weeks[S.weeks.length-1];
+  S.weeks.push({w:last.w+1,n:flow.n,r:flow.r,kg:null,mix:null}); /* weights arrive with the next handover */
+  if(S.weeks.length>8) S.weeks.shift();
+  flow={step:1,n:0,r:0,idea:null,commit:null,hands:0,frame:flow.frame};
+  toast(t("saved")); go("log"); return;
+ }
+ if(d.adv){ const b=batch(); b.rungs[+d.adv]=2; if(+d.adv===2 && b.rungs[3]===0) b.rungs[3]=1; render(false); return; }
+ if("copy" in d){
+  const ta=$("#wa"); const txt=ta.value;
+  const fallback=()=>{ ta.select(); try{ document.execCommand("copy") ? toast(t("copied")) : toast(t("copyFail")); }catch(_){ toast(t("copyFail")); } };
+  if(navigator.clipboard && window.isSecureContext){ navigator.clipboard.writeText(txt).then(()=>toast(t("copied")),fallback); } else fallback();
+  return;
+ }
+ if("print" in d){ window.print(); return; }
+ if("form" in d){ formOpen=true; render(true); return; }
+ if("cancel" in d){ formOpen=false; render(true); return; }
+ if("reset" in d){ S=seed(); flow={step:1,n:0,r:0,idea:null,commit:null,hands:0,frame:"A"}; toast(t("resetDone")); render(false); return; }
+});
+view.addEventListener("change",e=>{ if(e.target.id==="bsel"){ S.current=e.target.value; render(false);} });
+view.addEventListener("submit",e=>{
+ if(e.target.id!=="hform") return; e.preventDefault();
+ const num=id=>{const v=parseFloat($(id).value); return isFinite(v)&&v>0?Math.round(v*10)/10:0;};
+ const low=num("#fLow"), rec=num("#fRec"), rej=num("#fRej");
+ if(low+rec+rej<=0){ $("#ferr").textContent=t("invalid"); return; }
+ const mix=+document.querySelector('input[name=mix]:checked').value;
+ const sharp=+document.querySelector('input[name=sharp]:checked').value;
+ const n=S.batches.length+1;
+ const id="B-"+String(412+n*7).padStart(4,"0");
+ const today=new Date(); const iso=today.getFullYear()+"-"+String(today.getMonth()+1).padStart(2,"0")+"-"+String(today.getDate()).padStart(2,"0");
+ S.batches.push({id,date:iso,low,rec,rej,mix,sharp,dest:+$("#fDest").value,ev:+$("#fEv").value,rungs:[2,2,1,0,0,0]});
+ S.current=id; formOpen=false; render(true);
+});
+
+render(false);
+})();
+</script>
+</body>
+</html>

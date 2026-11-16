@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Follow-Through</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<meta name="description" content="Follow-Through: designing the missing step between knowing and doing in India's everyday waste. Portfolio and thesis plan.">
+<style>/* Follow-Through site — matched to the student's Framer portfolio.
+   Layout concept: a dark research index — one reading column for the argument, project rows with year and mono tags, artefacts in a side rail. */
+:root{
+  --bg:#0F0F0F; --surface:#171717; --surface-2:#1F1F1F; --band:#141414; --ink:#FFFFFF; --text:#E3E3E3; --muted:#9A9A9A; --dim:#5E5E5E; --line:#2A2A2A;
+  --accent:#41B78E; --accent-ink:#0F0F0F; --warm:#F0A06E; --warm-soft:#22170F; --diagram-bg:#0F0F0F;
+  --done:#41B78E; --progress:#E5B567; --planned:#7FB0F5; --concept:#B9A3FA; --notyet:#F4A98A;
+  --identity:#B9A3FA; --service:#41B78E; --evidence:#7FB0F5; --other:#9A9A9A;
+  --sans:"Inter","Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  --mono:"JetBrains Mono",Consolas,ui-monospace,"SF Mono",monospace;
+  --radius:14px; --maxw:1160px; color-scheme:dark;
+}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){
+  --bg:#FFFFFF; --surface:#F5F5F3; --surface-2:#EDEDEA; --band:#F7F7F5; --ink:#0F0F0F; --text:#1F1F1F; --muted:#5C5C5C; --dim:#A3A3A3; --line:#E2E2E0;
+  --accent:#1F7A5C; --accent-ink:#FFFFFF; --warm:#9A4510; --warm-soft:#FBF2EA; --diagram-bg:#F5F5F3;
+  --done:#1F7A5C; --progress:#8A5A00; --planned:#1F57A8; --concept:#6B48C8; --notyet:#9A4510;
+  --identity:#6B48C8; --service:#1F7A5C; --evidence:#1F57A8; --other:#5C5C5C; color-scheme:light}}
+:root[data-theme="light"]{
+  --bg:#FFFFFF; --surface:#F5F5F3; --surface-2:#EDEDEA; --band:#F7F7F5; --ink:#0F0F0F; --text:#1F1F1F; --muted:#5C5C5C; --dim:#A3A3A3; --line:#E2E2E0;
+  --accent:#1F7A5C; --accent-ink:#FFFFFF; --warm:#9A4510; --warm-soft:#FBF2EA; --diagram-bg:#F5F5F3;
+  --done:#1F7A5C; --progress:#8A5A00; --planned:#1F57A8; --concept:#6B48C8; --notyet:#9A4510;
+  --identity:#6B48C8; --service:#1F7A5C; --evidence:#1F57A8; --other:#5C5C5C; color-scheme:light}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--text);font:400 1.0625rem/1.6 var(--sans);font-feature-settings:"cv11","ss01";-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--ink);text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+h1,h2,h3{font-family:var(--sans);color:var(--ink);font-weight:600;line-height:1.08;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.3rem,6vw,4.6rem);letter-spacing:-.045em}
+h2{font-size:clamp(1.6rem,3.2vw,2.4rem);letter-spacing:-.035em;margin-bottom:.7rem}
+h3{font-size:1.25rem;letter-spacing:-.02em;margin-bottom:.35rem}
+p{margin:0 0 .9rem;max-width:66ch}
+.dim{color:var(--dim)}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0}
+.skip{position:absolute;left:-999px;top:0;background:var(--surface);color:var(--ink);padding:.6rem 1rem;z-index:20}
+.skip:focus{left:max(16px,env(safe-area-inset-left,0px));top:calc(8px + env(safe-area-inset-top,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+
+/* mono labels */
+.metarow,.eyebrow,.year,.tag,.chip,.layer,.facts dt,caption,cite,.crumbs,.status .chip,.when,.brand-sub,.src{font-family:var(--mono)}
+.metarow{display:flex;align-items:center;gap:1rem;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:2.2rem}
+.metarow .rule{flex:1;height:1px;background:var(--line);min-width:1rem}
+.metarow .live{color:var(--accent)}
+@media (max-width:640px){.metarow span:nth-child(3),.metarow .rule:nth-child(4){display:none}}
+.eyebrow{font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem}
+
+/* header */
+.site-head{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.head-inner{display:flex;align-items:center;gap:1.2rem;padding-block:.85rem}
+.brand{font:600 1rem/1 var(--sans);color:var(--ink);text-decoration:none;letter-spacing:-.01em;white-space:nowrap}
+.brand-sub{font-size:.72rem;color:var(--muted);letter-spacing:.06em;margin-left:.3rem}
+.head-rule{flex:1;height:1px;background:var(--line)}
+nav{display:flex;gap:.2rem;flex-wrap:wrap}
+nav a{color:var(--muted);text-decoration:none;font-weight:500;font-size:.92rem;padding:.4rem .7rem;border-radius:999px}
+nav a:hover{color:var(--ink)}
+nav a[aria-current="page"]{color:var(--ink);background:var(--surface)}
+@media (max-width:640px){.head-rule,.brand-sub{display:none}.head-inner{justify-content:space-between;flex-wrap:wrap}}
+
+/* chips, tags, layers */
+.chip{display:inline-flex;align-items:center;gap:.45em;font-size:.66rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:.42em .75em;border-radius:999px;border:1px solid currentColor;white-space:nowrap;line-height:1}
+.chip::before{content:"";width:.5em;height:.5em;border-radius:50%;background:currentColor}
+.chip.done{color:var(--done)} .chip.progress{color:var(--progress)} .chip.planned{color:var(--planned)} .chip.concept{color:var(--concept)} .chip.notyet{color:var(--notyet)}
+.chips{display:flex;gap:.4rem;flex-wrap:wrap;align-items:center;margin:0}
+.tag{display:inline-block;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:.45em .8em;line-height:1}
+.tags{display:flex;gap:.4rem;flex-wrap:wrap}
+.layer{display:inline-flex;align-items:center;gap:.45rem;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-right:.2rem}
+.layer .dot{width:8px;height:8px;border-radius:50%;background:var(--other)}
+.layer.identity .dot{background:var(--identity)} .layer.service .dot{background:var(--service)} .layer.evidence .dot{background:var(--evidence)}
+
+/* hero */
+.hero{max-width:var(--maxw);margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:clamp(2rem,6vw,4.5rem) 3rem}
+.hero h1{max-width:18ch}
+.lede{font-size:clamp(1.1rem,2vw,1.45rem);line-height:1.45;letter-spacing:-.01em;color:var(--muted);max-width:52ch;margin-top:1.6rem}
+.lede strong{color:var(--ink);font-weight:600}
+.status{list-style:none;padding:0;margin:2.6rem 0 0;display:grid;max-width:900px}
+.status li{display:grid;grid-template-columns:8rem 1fr;gap:1.2rem;align-items:baseline;padding:1rem 0;border-top:1px solid var(--line)}
+.status li:last-child{border-bottom:1px solid var(--line)}
+.status li p{margin:0;font-size:.98rem;color:var(--text)}
+.status .chip{justify-self:start}
+
+/* bands */
+.band{background:var(--band);padding-block:3.5rem;margin-block:1.5rem;border-block:1px solid var(--line)}
+.band.alt{background:var(--bg)}
+.section-lede{color:var(--muted);max-width:62ch}
+.diagram{margin:1.6rem 0 0;background:var(--diagram-bg);border:1px solid var(--line);border-radius:var(--radius);padding:clamp(6px,1.5vw,14px);overflow-x:auto}
+.diagram img{min-width:640px;width:100%}
+.diagram picture{display:block}
+
+/* project rows (Framer pattern) */
+#projects{padding-block:3rem 1rem}
+.layer-block{margin-top:2.6rem}
+.layer-block>header{display:flex;align-items:baseline;gap:.9rem;flex-wrap:wrap;margin-bottom:.4rem}
+.layer-block>header h3{font-size:.78rem;font-family:var(--mono);font-weight:500;letter-spacing:.14em;text-transform:uppercase;margin:0}
+.layer-block.identity>header h3{color:var(--identity)} .layer-block.service>header h3{color:var(--service)} .layer-block.evidence>header h3{color:var(--evidence)} .layer-block.other>header h3{color:var(--other)}
+.layer-block>header p{margin:0;color:var(--muted);font-size:.9rem}
+.rows{display:grid;border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:1.6rem;align-items:center;padding:1.5rem .2rem;border-bottom:1px solid var(--line);color:inherit;text-decoration:none;transition:background .2s}
+.row:hover{background:var(--band)}
+.row-main{display:grid;gap:.75rem;min-width:0}
+.row-head{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap}
+.row h3{font-size:clamp(1.35rem,2.6vw,1.8rem);letter-spacing:-.04em;margin:0}
+.year{font-size:clamp(1rem,1.8vw,1.35rem);color:var(--muted);font-family:var(--sans);letter-spacing:-.03em;white-space:nowrap}
+.row-line{color:var(--muted);font-size:.98rem;max-width:62ch}
+.thumb{display:block;aspect-ratio:16/10;border-radius:10px;overflow:hidden;background:var(--surface);border:1px solid var(--line)}
+.thumb img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.05);transition:filter .3s}
+.row:hover .thumb img{filter:none}
+.thumb.empty{background:repeating-linear-gradient(135deg,var(--surface) 0 10px,var(--surface-2) 10px 20px)}
+@media (max-width:720px){.row{grid-template-columns:1fr}.thumb{max-width:420px}}
+
+/* findings */
+.findings{list-style:none;padding:0;margin:1.6rem 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.findings li{background:var(--bg);padding:1.4rem;min-width:0}
+.num{display:block;font:600 clamp(1.9rem,3.4vw,2.6rem)/1.05 var(--sans);letter-spacing:-.04em;color:var(--ink);margin-bottom:.7rem;font-variant-numeric:tabular-nums}
+.findings p{font-size:.97rem;margin-bottom:.7rem;color:var(--text)} cite{display:block;font-style:normal;font-size:.72rem;letter-spacing:.02em;color:var(--muted)}
+.findings.compact{margin:1.6rem 0}
+
+/* timeline */
+.timeline{list-style:none;padding:0;margin:1.4rem 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:1.2rem}
+.timeline li{border-top:1px solid var(--ink);padding-top:1.1rem;min-width:0}
+.timeline .when{display:flex;gap:.7rem;align-items:center;flex-wrap:wrap;color:var(--muted);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.7rem}
+.timeline p{font-size:.97rem;color:var(--muted)}
+section.wrap,.wrap>section{padding-block:1.8rem}
+.cta{display:flex;gap:.7rem;flex-wrap:wrap;margin:1.6rem 0 3.5rem}
+.button{display:inline-flex;align-items:center;gap:.5rem;background:var(--ink);color:var(--bg);text-decoration:none;font-weight:600;padding:.8rem 1.25rem;border-radius:999px;font-size:.95rem}
+.button.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.button.ghost:hover{border-color:var(--ink)}
+
+/* project page */
+.project,.research,.about{padding-block:2.2rem 2rem}
+.crumbs{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:2rem} .crumbs a{color:var(--muted)}
+.project-head{padding-bottom:2rem;border-bottom:1px solid var(--line);margin-bottom:2rem}
+.project-head h1{font-size:clamp(2.2rem,5.5vw,4rem)}
+.project-head .chips{margin-top:1.4rem}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin:0 0 2.4rem}
+.facts div{background:var(--bg);padding:1rem 1.1rem;min-width:0}
+.facts dt{font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
+.facts dd{margin:0;font-size:.95rem;color:var(--ink)}
+.cols{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:3rem;align-items:start}
+@media (max-width:880px){.cols{grid-template-columns:minmax(0,1fr)}}
+.main,.side{min-width:0}
+.main section{margin-bottom:2.2rem} .main h2{font-size:1.45rem}
+.ticks{padding-left:1.1rem;margin:0} .ticks li{margin-bottom:.6rem} .ticks li::marker{color:var(--accent)}
+.ev{list-style:none;padding:0;margin:0;display:grid;gap:.7rem} .ev li{display:flex;gap:.7rem;align-items:baseline;flex-wrap:wrap}
+.limits{background:var(--warm-soft);border:1px solid color-mix(in srgb,var(--warm) 30%,transparent);border-radius:var(--radius);padding:1.2rem 1.4rem}
+.limits h2{color:var(--warm)} .limits ul{margin:0;padding-left:1.1rem}
+.side{display:grid;gap:1.2rem;position:sticky;top:5rem}
+@media (max-width:880px){.side{position:static}}
+.shot{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:.6rem;overflow:hidden}
+.shot img{border-radius:8px} .shot figcaption{font:400 .72rem/1.45 var(--mono);color:var(--muted);padding:.6rem .25rem .1rem}
+.docs,.contact{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.1rem 1.25rem}
+.docs h2,.contact h2{font-size:1rem;letter-spacing:-.01em} .docs ul{margin:0;padding-left:1.1rem}
+.table-wrap{overflow-x:auto;margin:0 0 2.2rem;border:1px solid var(--line);border-radius:var(--radius)}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:.95rem}
+caption{text-align:left;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:.9rem 1rem .5rem}
+th,td{text-align:left;padding:.75rem 1rem;border-top:1px solid var(--line);vertical-align:top}
+thead th{font:500 .66rem/1.3 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)} tbody th{color:var(--ink);font-weight:600}
+.gap{margin:0 0 2.2rem;padding:1.4rem 1.5rem;border:1px solid var(--line);border-radius:var(--radius)}
+.gap p{font-size:1.18rem;line-height:1.5;letter-spacing:-.015em;color:var(--ink)}
+.rq,.lit{list-style:none;padding:0;margin:0;display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.rq li,.lit li{background:var(--bg);padding:1.2rem 1.3rem}
+.rq h3,.lit h3{font-size:1.05rem} .rq p,.lit p{margin:0 0 .4rem;color:var(--muted)}
+.hyp{padding-left:1.1rem} .hyp li{margin-bottom:.6rem} .hyp strong{font-family:var(--mono);font-weight:500;color:var(--accent);margin-right:.3rem}
+.principles{padding-left:1.1rem} .principles li{margin-bottom:.6rem} .principles span{color:var(--muted)}
+.mono{font-family:var(--mono)} .small{font-size:.86rem;color:var(--muted)}
+.site-foot{border-top:1px solid var(--line);padding-block:2rem;margin-top:2rem}
+.site-foot p{margin:0 0 .4rem;font-size:.9rem;color:var(--muted)} .site-foot strong{color:var(--ink)}
+@media (max-width:560px){.status li{grid-template-columns:1fr;gap:.5rem}}
+@media print{.site-head,.skip,.cta{display:none}}
+#projects,[id^="l-"]{scroll-margin-top:5.5rem}
+.theme-toggle{font:500 .68rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:transparent;border:1px solid var(--line);border-radius:999px;padding:.5rem .8rem;cursor:pointer;margin-left:.3rem}
+.theme-toggle:hover{color:var(--ink);border-color:var(--ink)}
+.d-light{display:none}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]) .d-light{display:block}:root:not([data-theme="dark"]) .d-dark{display:none}}
+:root[data-theme="light"] .d-light{display:block} :root[data-theme="light"] .d-dark{display:none}
+:root[data-theme="dark"] .d-light{display:none} :root[data-theme="dark"] .d-dark{display:block}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head"><div class="wrap head-inner"><a class="brand" href="#home">Abhimanyu Shukla <span class="brand-sub">/ Follow-Through</span></a><span class="head-rule" aria-hidden="true"></span><nav aria-label="Main"><a href="#home" data-nav="home">Home</a><a href="#projects" data-nav="projects">Projects</a><a href="#research" data-nav="research">Research</a><a href="#about" data-nav="about">About</a><button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch theme">Light</button></nav></div></header>
+<main id="main" tabindex="-1"><div class="view" data-view="home" id="view-home">
+<section class="hero" aria-labelledby="h-home">
+  <div class="metarow" aria-hidden="true"><span>IIT Hyderabad</span><span class="rule"></span><span>(M.Des thesis in preparation)</span><span class="rule"></span><span class="live">● Open to partners</span></div>
+  <p class="eyebrow">Strategic Designer · Researcher · Systems Thinker</p>
+  <h1 id="h-home">Why do people who know <span class="dim">and want to act on their waste</span> still not act?</h1>
+  <p class="lede"><strong>Follow-Through</strong> is my thesis programme: designing the missing step between knowing and doing in India&#x27;s everyday waste. I design and test the service, the feedback and the evidence that sit between knowing and doing.</p>
+  <ul class="status" aria-label="What exists today"><li><span class="chip done">DONE</span><p>A six-week design-research internship with L&amp;T Construction at the Satna water-supply project; a 2024 household wet-waste project with a 70-household survey and three physical prototypes; a desk framework linking cultural concepts to behaviour; a checked base of 29 sources and 14 international benchmarks.</p></li><li><span class="chip concept">CONCEPT</span><p>A clickable prototype of the Seva Circle and the Trust Receipt (sample data); the Claim Ladder; the EcoCraft platform.</p></li><li><span class="chip planned">PLANNED</span><p>A five-to-six-week campus sprint at IIT Hyderabad; an eight-week matched-group pilot at Satna; a field protocol for sachet waste in Madhya Pradesh.</p></li><li><span class="chip notyet">NOT YET</span><p>Any measured behaviour change. That is the next step, and the reason for the plan below.</p></li></ul>
+</section>
+<section class="band" aria-labelledby="h-layers">
+  <div class="wrap">
+    <h2 id="h-layers">One question, three layers</h2>
+    <p class="section-lede">Identity explains why people act. Service makes acting possible at a fixed moment. Evidence proves what happened without overclaiming. A platform idea waits on the horizon until a manual service has worked.</p>
+    <figure class="diagram"><img class="d-dark" src="img/three-layer-dark.webp" alt="Diagram: Identity (Aham Brahmasmi framework and the Seva Circle), Service (Sachet-to-System with a Trust Receipt, built on the Satna internship, the household wet-waste project and the sachet study), Evidence (the Claim Ladder and a verified fact base); a platform concept on the horizon." width="1600" height="1000" loading="lazy"><img class="d-light" src="img/three-layer-light.webp" alt="Diagram: Identity (Aham Brahmasmi framework and the Seva Circle), Service (Sachet-to-System with a Trust Receipt, built on the Satna internship, the household wet-waste project and the sachet study), Evidence (the Claim Ladder and a verified fact base); a platform concept on the horizon." width="1600" height="1000" loading="lazy"></figure>
+  </div>
+</section>
+<section class="wrap" aria-labelledby="h-projects" id="projects">
+  <h2 id="h-projects">Projects, by layer</h2>
+  <section class="layer-block identity" aria-labelledby="l-identity"><header><h3 id="l-identity">Identity</h3><p>Why people act</p></header><div class="rows"><a class="row" href="#aham-brahmasmi"><span class="row-main"><span class="row-head"><h3>Aham Brahmasmi</h3><span class="year">2025 → 2026</span></span><span class="tags"><span class="tag">Behavioural design</span><span class="tag">Cultural framework</span><span class="tag">Prototype</span></span><span class="row-line">A framework that links ideas of duty, service and non-harm to behavioural mechanisms, and a prototype of two service ideas built from it.</span><span class="chips"><span class="layer identity"><span class="dot" aria-hidden="true"></span>Identity</span><span class="chip done">DONE</span><span class="chip concept">CONCEPT</span></span></span><span class="thumb"><img src="img/aham-brahmasmi-cover_phones.webp" alt="" loading="lazy" decoding="async"></span></a></div></section><section class="layer-block service" aria-labelledby="l-service"><header><h3 id="l-service">Service</h3><p>What makes acting possible</p></header><div class="rows"><a class="row" href="#ecocraft"><span class="row-main"><span class="row-head"><h3>EcoCraft and the Satna internship</h3><span class="year">2024 → 2026</span></span><span class="tags"><span class="tag">Field research</span><span class="tag">CSR pilot</span><span class="tag">Circular concept</span></span><span class="row-line">A 2024 app concept for turning waste into useful products, and the 2026 field work at an L&amp;T project site that changed how I approach the problem.</span><span class="chips"><span class="layer service"><span class="dot" aria-hidden="true"></span>Service</span><span class="chip done">DONE</span><span class="chip progress">IN PROGRESS</span><span class="chip concept">CONCEPT</span></span></span><span class="thumb"><img src="img/ecocraft-ec-cover-tyre-seat.webp" alt="" loading="lazy" decoding="async"></span></a><a class="row" href="#wet-waste"><span class="row-main"><span class="row-head"><h3>Wet Waste at Home</h3><span class="year">2024</span></span><span class="tags"><span class="tag">Household survey</span><span class="tag">Community design</span><span class="tag">Physical prototypes</span></span><span class="row-line">A B.Des degree project on household wet waste: a survey of 70 households, an awareness website, a WhatsApp community and three physical prototypes.</span><span class="chips"><span class="layer service"><span class="dot" aria-hidden="true"></span>Service</span><span class="chip done">DONE</span></span></span><span class="thumb"><img src="img/wet-waste-ww-cover-pot.webp" alt="" loading="lazy" decoding="async"></span></a><a class="row" href="#sachet-waste-study"><span class="row-main"><span class="row-head"><h3>Sachet waste study (Madhya Pradesh)</h3><span class="year">2026</span></span><span class="tags"><span class="tag">Field protocol</span><span class="tag">Research ethics</span><span class="tag">Waste mapping</span></span><span class="row-line">Where gutkha and pan-masala sachets end up, who handles them, and what changes public disposal: a desk review corrected, and a field protocol ready for ethics review.</span><span class="chips"><span class="layer service"><span class="dot" aria-hidden="true"></span>Service</span><span class="chip done">DONE</span><span class="chip planned">PLANNED</span></span></span><span class="thumb"><img src="img/sachet-waste-study-desk-analysis-errata.webp" alt="" loading="lazy" decoding="async"></span></a></div></section><section class="layer-block evidence" aria-labelledby="l-evidence"><header><h3 id="l-evidence">Evidence</h3><p>Proof with honest claims</p></header><div class="rows"><a class="row" href="#evidence-pack"><span class="row-main"><span class="row-head"><h3>Circularity evidence pack</h3><span class="year">2026</span></span><span class="tags"><span class="tag">Evidence review</span><span class="tag">EPR</span><span class="tag">Claim standards</span></span><span class="row-line">A rapid evidence review of India&#x27;s plastic packaging chain, its research gap, and the checks that turned it into the thesis literature base.</span><span class="chips"><span class="layer evidence"><span class="dot" aria-hidden="true"></span>Evidence</span><span class="chip done">DONE</span></span></span><span class="thumb"><img src="img/evidence-pack-pack_research_gap.webp" alt="" loading="lazy" decoding="async"></span></a></div></section>
+  <section class="layer-block other" aria-labelledby="l-other"><header><h3 id="l-other">Other design work</h3><p>Outside the thesis umbrella</p></header><div class="rows"><a class="row" href="#renewear"><span class="row-main"><span class="row-head"><h3>ReneWear</h3><span class="year">2024</span></span><span class="tags"><span class="tag">UI design</span><span class="tag">Circular fashion</span></span><span class="row-line">A mobile concept for reselling, upcycling, donating and renting clothes, made in a short UI sprint.</span><span class="chips"><span class="layer other"><span class="dot" aria-hidden="true"></span>Other design work</span><span class="chip concept">CONCEPT</span></span></span><span class="thumb"><img src="img/renewear-rw-hero.webp" alt="" loading="lazy" decoding="async"></span></a></div></section>
+</section>
+<section class="band alt" aria-labelledby="h-evidence">
+  <div class="wrap">
+    <h2 id="h-evidence">The evidence this work stands on</h2>
+    <p class="section-lede">Three findings from sources I opened and checked. My own field data comes next.</p>
+    <ul class="findings"><li><strong class="num">40%+</strong><p>of rural households with a working latrine had at least one member who defecated in the open (3,235 households, five north Indian states).</p><cite>Coffey et al., 2014, EPW (SQUAT survey)</cite></li><li><strong class="num">3.7% → 54% → 43%</strong><p>household segregation before, one week after and five weeks after an intervention in 15 Delhi localities.</p><cite>Wadehra &amp; Mishra, 2018, Resources, Conservation and Recycling</cite></li><li><strong class="num">d = 0.36</strong><p>a medium-to-large change in intention produces only a small-to-medium change in behaviour.</p><cite>Sheeran &amp; Webb, 2016</cite></li></ul>
+  </div>
+</section>
+<section class="wrap" aria-labelledby="h-next">
+  <h2 id="h-next">What happens next</h2>
+  <ol class="timeline"><li><div class="when"><span class="chip planned">PLANNED</span><span>Dec 2026 – Jan 2027</span></div><h3>Campus sprint, IIT Hyderabad</h3><p>Two matched bin stations at one cafeteria; identity framing vs standard signage, swapped weekly; audits twice a week. A campus Trust Receipt reports to the Resource Recovery Park.</p></li><li><div class="when"><span class="chip planned">PLANNED</span><span>Feb – Mar 2027</span></div><h3>Map and co-design at the main site</h3><p>Waste audits, a sachet-flow map and 15–20 interviews; a service blueprint with an evidence lane, co-designed with residents, workers and the collector.</p></li><li><div class="when"><span class="chip planned">PLANNED</span><span>Mar – May 2027</span></div><h3>Eight-week pilot</h3><p>Matched groups; weekly weigh-ins, contamination checks and head-counts. Satna if L&amp;T confirms; the campus if not.</p></li></ol>
+  <p class="cta"><a class="button" href="#research">See the research plan</a> <a class="button ghost" href="#about">Work with me</a></p>
+</section></div><div class="view" data-view="aham-brahmasmi" id="view-aham-brahmasmi" hidden>
+<article class="project wrap" aria-labelledby="h-aham-brahmasmi">
+  <p class="crumbs"><a href="#home">Follow-Through</a> <span aria-hidden="true">/</span> Identity</p>
+  <header class="project-head">
+    <p class="eyebrow">Culturally rooted behaviour design</p>
+    <h1 id="h-aham-brahmasmi">Aham Brahmasmi</h1>
+    <p class="lede">A framework that links ideas of duty, service and non-harm to behavioural mechanisms, and a prototype of two service ideas built from it.</p>
+    <p class="chips"><span class="layer identity"><span class="dot" aria-hidden="true"></span>Identity</span> <span class="chip done">DONE</span><span class="chip concept">CONCEPT</span></p>
+  </header>
+  <dl class="facts"><div><dt>Role</dt><dd>Designer and researcher (solo)</dd></div><div><dt>When</dt><dd>Dec 2025 – May 2026; prototype Nov 2026</dd></div><div><dt>Context</dt><dd>M.Des, IIT Hyderabad</dd></div><div><dt>Status</dt><dd>Framework DONE · prototype CONCEPT · field test PLANNED</dd></div></dl>
+  <div class="cols">
+    <div class="main">
+      <section><h2>Problem</h2><p>Infrastructure and awareness have grown faster than use. In the SQUAT survey, over 40% of rural households with a working latrine had at least one member who defecated in the open (Coffey et al., 2014). The project asked whether familiar ideas of duty (dharma), service (seva), non-harm (ahimsa) and cleanliness (shaucha) could carry public behaviour where signs and fines do not.</p></section>
+      <section><h2>What I did</h2><ul class="ticks"><li>Reviewed about 21 sources: COM-B, EAST, broken-windows theory, and two sanitation trials in Odisha and Madhya Pradesh.</li><li>Mapped four cultural concepts to behavioural mechanisms and product hooks, and wrote four intervention concepts with guardrails.</li><li>In a November 2026 review, removed earlier overclaims (&quot;Live Pilot&quot;, an NFHS-5 attribution, unsourced impact figures) and published the corrections.</li><li>Built a clickable prototype of the Seva Circle (a 10-minute weekly group routine) and the Trust Receipt (feedback on where a group&#x27;s waste went), in English and Hindi.</li></ul></section>
+      <div class="table-wrap"><table><caption>Spiritual-to-behaviour mapping (framework, untested)</caption><thead><tr><th scope="col">Cultural concept</th><th scope="col">Behavioural mechanism</th><th scope="col">Design hook</th></tr></thead><tbody><tr><th scope="row">Dharma (duty)</th><td>Duty identity</td><td>Keeping shared space in order is part of who I am</td></tr><tr><th scope="row">Karma (consequence)</th><td>Consequence salience</td><td>Seeing what happens to what I discard</td></tr><tr><th scope="row">Seva (service)</th><td>Warm glow, belonging</td><td>A short weekly group routine</td></tr><tr><th scope="row">Ahimsa (non-harm)</th><td>Empathy</td><td>Wrapping sharp items to protect the collector</td></tr></tbody></table></div>
+      
+      
+      <section><h2>Evidence</h2><ul class="ev"><li><span class="chip done">DONE</span> <span>Desk report (12 pages) with references restored and every unchecked number tagged.</span></li><li><span class="chip concept">CONCEPT</span> <span>Prototype with sample data only; no users, no pilot.</span></li><li><span class="chip done">DONE</span> <span>Correction log of 202 changes to the deck, case study and report.</span></li></ul></section>
+      <section><h2>Outcome</h2><p>A method for designing with cultural meaning, and a prototype specific enough to test. The identity framing is now hypothesis H2 of the thesis.</p></section>
+      <section class="limits"><h2>Honest limits</h2><ul><li>No primary research or user testing yet.</li><li>Faith framing must stay voluntary and always sit beside a secular frame; acceptance across communities is untested.</li><li>Scripture citations await a scholar&#x27;s check; the prototype uses concept names only.</li></ul></section>
+      <section><h2>Next</h2><p>Test identity framing against standard signage in the campus sprint (PLANNED, Dec 2026 – Jan 2027).</p></section>
+    </div>
+    <div class="side"><figure class="shot"><img src="img/aham-brahmasmi-cover_phones.webp" alt="Two phone screens of the Aham Brahmasmi prototype: the weekly home screen and a Trust Receipt showing a six-rung claim ladder." loading="lazy" decoding="async"><figcaption>Prototype, Nov 2026: home and Trust Receipt screens (sample data).</figcaption></figure><figure class="shot"><img src="img/aham-brahmasmi-receipt.webp" alt="Trust Receipt screen listing collected, segregated, delivered as evidenced and later rungs as pending or not claimed." loading="lazy" decoding="async"><figcaption>Trust Receipt: each rung says what can and cannot be claimed (sample data).</figcaption></figure><figure class="shot"><img src="img/aham-brahmasmi-mindmap_spiritual.webp" alt="Mind map linking dharma, karma, seva and ahimsa to behavioural outcomes such as ethical conduct and worker safety." loading="lazy" decoding="async"><figcaption>Desk framework, 2026: cultural concepts mapped to behavioural outcomes.</figcaption></figure><aside class="docs local-only" aria-label="Files"><h2>Files</h2><ul><li><a href="docs/aham-brahmasmi-deck.pdf">Deck (PDF)</a></li><li><a href="docs/aham-brahmasmi-case-study.pdf">One-page case study</a></li><li><a href="docs/aham-brahmasmi-poster.pdf">Poster</a></li><li><a href="prototype/index.html">Prototype</a></li></ul></aside></div>
+  </div>
+  <p class="cta"><a class="button ghost" href="#home">Back to all projects</a></p>
+</article></div><div class="view" data-view="ecocraft" id="view-ecocraft" hidden>
+<article class="project wrap" aria-labelledby="h-ecocraft">
+  <p class="crumbs"><a href="#home">Follow-Through</a> <span aria-hidden="true">/</span> Service</p>
+  <header class="project-head">
+    <p class="eyebrow">From an app concept to field work</p>
+    <h1 id="h-ecocraft">EcoCraft and the Satna internship</h1>
+    <p class="lede">A 2024 app concept for turning waste into useful products, and the 2026 field work at an L&amp;T project site that changed how I approach the problem.</p>
+    <p class="chips"><span class="layer service"><span class="dot" aria-hidden="true"></span>Service</span> <span class="chip done">DONE</span><span class="chip progress">IN PROGRESS</span><span class="chip concept">CONCEPT</span></p>
+  </header>
+  <dl class="facts"><div><dt>Role</dt><dd>Design Research Intern, L&amp;T Construction (Water &amp; Effluent Treatment)</dd></div><div><dt>When</dt><dd>4 Jun – 16 Jul 2026; B.Des concept 2024</dd></div><div><dt>Where</dt><dd>Satna MVRWSS project, Madhya Pradesh</dd></div><div><dt>Status</dt><dd>Field work DONE · furniture IN PROGRESS · platform CONCEPT</dd></div></dl>
+  <div class="cols">
+    <div class="main">
+      <section><h2>Problem</h2><p>Low-value plastic such as sachets and wrappers has no scrap value, so it is burnt or dumped. Communities around a large infrastructure site had no practical way to act on it.</p></section>
+      <section><h2>What I did</h2><ul class="ticks"><li>B.Des (UP Institute of Design, Noida, 2024): research, benchmarking, information architecture and mobile mock-ups for an upcycling app.</li><li>At Satna (2026): awareness and segregation sessions with local women and students of nearby schools.</li><li>Led a hands-on ecobrick demonstration: 10–15 ecobricks made from locally collected plastic.</li><li>Presented a CSR-aligned proposal for a phased pilot to site management.</li></ul></section>
+      
+      
+      
+      <section><h2>Evidence</h2><ul class="ev"><li><span class="chip done">DONE</span> <span>Role, site and dates per the experience-letter text supplied by L&amp;T (signed copy to be collected).</span></li><li><span class="chip progress">IN PROGRESS</span> <span>Session counts, attendance and weights are being recorded from photos and messages; none is shown until recorded.</span></li><li><span class="chip concept">CONCEPT</span> <span>The 2026 platform (scanner, marketplace, dashboards) is not built.</span></li></ul></section>
+      <section><h2>Outcome</h2><p>Site management heard the proposal and asked me to start. The field work, not the app, became the seed of the thesis.</p></section>
+      <section class="limits"><h2>Honest limits</h2><ul><li>Counts were not recorded at the time.</li><li>Ecobricks store plastic and carry a fire risk; they are a visible proof object, not recycling.</li><li>An earlier website showed invented user numbers and testimonials; they have been removed.</li></ul></section>
+      <section><h2>Next</h2><p>Record the Satna fact sheet; finish the furniture; propose an 8–10 week scaled pilot (PLANNED).</p></section>
+    </div>
+    <div class="side"><figure class="shot"><img src="img/ecocraft-ec-cover-tyre-seat.webp" alt="The designer seated on a stack of waste tyres being made into seating." loading="lazy" decoding="async"><figcaption>Making furniture from waste tyres, B.Des project (2024).</figcaption></figure><figure class="shot"><img src="img/ecocraft-ec-making.webp" alt="Four photos of a tyre being cut and fitted with a seat frame." loading="lazy" decoding="async"><figcaption>Hands-on making: cutting and assembling a tyre seat (2024).</figcaption></figure><figure class="shot"><img src="img/ecocraft-ec-app-mockups.webp" alt="Six phone mock-ups of the EcoCraft upcycling app." loading="lazy" decoding="async"><figcaption>EcoCraft app mock-ups, B.Des (2024). CONCEPT.</figcaption></figure><figure class="shot"><img src="img/ecocraft-ec-sketches-1.webp" alt="Five hand-drawn wireframe sketches of app screens." loading="lazy" decoding="async"><figcaption>Low-fidelity sketches, B.Des (2024).</figcaption></figure><aside class="docs local-only" aria-label="Files"><h2>Files</h2><ul><li><a href="docs/ecocraft-deck.pdf">Deck (PDF)</a></li><li><a href="docs/satna-fact-sheet.html">Satna fact sheet</a></li></ul></aside></div>
+  </div>
+  <p class="cta"><a class="button ghost" href="#home">Back to all projects</a></p>
+</article></div><div class="view" data-view="wet-waste" id="view-wet-waste" hidden>
+<article class="project wrap" aria-labelledby="h-wet-waste">
+  <p class="crumbs"><a href="#home">Follow-Through</a> <span aria-hidden="true">/</span> Service</p>
+  <header class="project-head">
+    <p class="eyebrow">Household baseline, 2024</p>
+    <h1 id="h-wet-waste">Wet Waste at Home</h1>
+    <p class="lede">A B.Des degree project on household wet waste: a survey of 70 households, an awareness website, a WhatsApp community and three physical prototypes.</p>
+    <p class="chips"><span class="layer service"><span class="dot" aria-hidden="true"></span>Service</span> <span class="chip done">DONE</span></p>
+  </header>
+  <dl class="facts"><div><dt>Role</dt><dd>Designer and researcher</dd></div><div><dt>When</dt><dd>Mar – Jun 2024</dd></div><div><dt>Context</dt><dd>B.Des degree project, UP Institute of Design</dd></div><div><dt>Status</dt><dd>DONE (no pilot)</dd></div></dl>
+  <div class="cols">
+    <div class="main">
+      <section><h2>Problem</h2><p>Food waste mixed with dry waste spoils both. Households were not composting, and the reasons were unclear.</p></section>
+      <section><h2>What I did</h2><ul class="ticks"><li>Surveyed 70 households (convenience sample) on waste volumes, collection and composting.</li><li>Designed an awareness website for first-time composters: information architecture and five high-fidelity pages.</li><li>Set up a WhatsApp community with four skill levels and an entry quiz (8 members at soft launch).</li><li>Made three physical prototypes: a folded-sheet segregation bin, an earthen-pot composter and a Bokashi fermentation bin.</li></ul></section>
+      
+      <ul class="findings compact"><li><strong class="num">60%</strong><p>of 70 households were not aware of composting (42 of 70).</p><cite>Own survey, n = 70, 2024</cite></li><li><strong class="num">50%</strong><p>generated 1–2 kg of wet waste a day (35 of 70).</p><cite>Own survey, n = 70, 2024</cite></li><li><strong class="num">35.7%</strong><p>named lack of awareness as a barrier (several answers allowed).</p><cite>Own survey, n = 70, 2024</cite></li></ul>
+      
+      <section><h2>Evidence</h2><ul class="ev"><li><span class="chip done">DONE</span> <span>Survey counts that reconcile with n = 70; design artefacts and build photos.</span></li></ul></section>
+      <section><h2>Outcome</h2><p>The survey showed an awareness gap. It did not measure segregation reliably, so it cannot show an awareness–action gap; the thesis relies on external evidence for that.</p></section>
+      <section class="limits"><h2>Honest limits</h2><ul><li>No pilot was run; the original conclusion was rewritten so it no longer reads as results.</li><li>Placeholder references and partner logos were removed in review.</li><li>Segregation figures in the original files cannot be derived from 70 responses and are not used.</li></ul></section>
+      <section><h2>Next</h2><p>A 6–8 week pilot with 15–20 households, measured by weekly bin audits (PLANNED, not scheduled).</p></section>
+    </div>
+    <div class="side"><figure class="shot"><img src="img/wet-waste-ww-cover-pot.webp" alt="A two-tier perforated clay composting pot standing on a concrete floor." loading="lazy" decoding="async"><figcaption>Earthen-pot aerobic composter, made on a potter&#x27;s wheel (2024).</figcaption></figure><figure class="shot"><img src="img/wet-waste-ww-proto-bin.webp" alt="Pencil sketches of a folding bin beside a lime-green folded plastic prototype." loading="lazy" decoding="async"><figcaption>Folded-sheet segregation bin: sketches and prototype (2024).</figcaption></figure><figure class="shot"><img src="img/wet-waste-ww-website.webp" alt="Several website pages about composting laid out side by side." loading="lazy" decoding="async"><figcaption>Awareness website for first-time composters, high-fidelity pages (2024).</figcaption></figure><figure class="shot"><img src="img/wet-waste-ww-whatsapp.webp" alt="Phone screenshots of a WhatsApp community and its level groups." loading="lazy" decoding="async"><figcaption>WhatsApp community with four skill levels; names blurred (2024).</figcaption></figure><aside class="docs local-only" aria-label="Files"><h2>Files</h2><ul><li><a href="docs/wet-waste-deck.pdf">Deck (PDF)</a></li></ul></aside></div>
+  </div>
+  <p class="cta"><a class="button ghost" href="#home">Back to all projects</a></p>
+</article></div><div class="view" data-view="sachet-waste-study" id="view-sachet-waste-study" hidden>
+<article class="project wrap" aria-labelledby="h-sachet-waste-study">
+  <p class="crumbs"><a href="#home">Follow-Through</a> <span aria-hidden="true">/</span> Service</p>
+  <header class="project-head">
+    <p class="eyebrow">A field protocol, not findings</p>
+    <h1 id="h-sachet-waste-study">Sachet waste study (Madhya Pradesh)</h1>
+    <p class="lede">Where gutkha and pan-masala sachets end up, who handles them, and what changes public disposal: a desk review corrected, and a field protocol ready for ethics review.</p>
+    <p class="chips"><span class="layer service"><span class="dot" aria-hidden="true"></span>Service</span> <span class="chip done">DONE</span><span class="chip planned">PLANNED</span></p>
+  </header>
+  <dl class="facts"><div><dt>Role</dt><dd>Researcher</dd></div><div><dt>When</dt><dd>May 2026; revised Nov 2026</dd></div><div><dt>Where</dt><dd>Satna, Chitrakoot, and one comparison city</dd></div><div><dt>Status</dt><dd>Protocol DONE · fieldwork PLANNED · 0 of 24 interviews</dd></div></dl>
+  <div class="cols">
+    <div class="main">
+      <section><h2>Problem</h2><p>Sachets are the hardest everyday plastic: tiny, wet, multilayer and worthless to a scrap dealer. In Madhya Pradesh 28.1% of adults use smokeless tobacco (GATS-2, 2016–17), so the stream is large.</p></section>
+      <section><h2>What I did</h2><ul class="ticks"><li>Desk review of tobacco, sachet waste and public-space behaviour (May 2026).</li><li>Corrected its headline figures: a &quot;60% of rural households&quot; claim had no source and conflicts with GATS-2; an 88.7% figure came from Bhubaneswar, not Chennai.</li><li>Rewrote six interview modules to remove leading and self-incriminating questions; added a consent note in Hindi and English, a sampling plan and an ethics note.</li></ul></section>
+      
+      <ul class="findings compact"><li><strong class="num">28.1%</strong><p>of adults in Madhya Pradesh use smokeless tobacco (age 15+).</p><cite>GATS-2 MP fact sheet, 2016–17</cite></li><li><strong class="num">14.1%</strong><p>of rural adults in Madhya Pradesh use gutka.</p><cite>GATS-2 MP fact sheet, 2016–17</cite></li><li><strong class="num">0 of 24</strong><p>interviews done. The protocol is ready; the fieldwork is not.</p><cite>Project tracker, Nov 2026</cite></li></ul>
+      
+      <section><h2>Evidence</h2><ul class="ev"><li><span class="chip done">DONE</span> <span>Interview guide, consent note (EN/HI), sampling plan, ethics note.</span></li><li><span class="chip planned">PLANNED</span> <span>Observation, waste audits and 24 interviews after ethics approval.</span></li></ul></section>
+      <section><h2>Outcome</h2><p>The study now serves the thesis as one measurable material inside the Sachet-to-System pilot. Addiction and health outcomes are out of scope.</p></section>
+      <section class="limits"><h2>Honest limits</h2><ul><li>No primary data exists.</li><li>The original analysis was AI-assisted and cited no sources; it is background reading only.</li></ul></section>
+      <section><h2>Next</h2><p>Ethics approval, then observation and audits before interviews (PLANNED).</p></section>
+    </div>
+    <div class="side"><figure class="shot"><img src="img/sachet-waste-study-desk-analysis-errata.webp" alt="Two excerpts of the original analysis with banners: deleted, no source; corrected, Bhubaneswar not Chennai." loading="lazy" decoding="async"><figcaption>Review, Nov 2026: two headline claims in the desk analysis corrected.</figcaption></figure><figure class="shot"><img src="img/sachet-waste-study-sachet-flow-body.webp" alt="Flow diagram from kiosk to user to ground or drain to dumping, and an alternative route through a blue bag and collector to a named receiver." loading="lazy" decoding="async"><figcaption>Hypothesis map: where a sachet goes today and with the service.</figcaption></figure><aside class="docs local-only" aria-label="Files"><h2>Files</h2><ul><li><a href="docs/sachet-waste-study-deck.pdf">Deck (PDF)</a></li><li><a href="docs/sachet-waste-study-case-study.pdf">One-page case study</a></li><li><a href="docs/sachet-waste-study-poster-A2.pdf">Poster</a></li><li><a href="docs/interview-guide.html">Field protocol</a></li></ul></aside></div>
+  </div>
+  <p class="cta"><a class="button ghost" href="#home">Back to all projects</a></p>
+</article></div><div class="view" data-view="evidence-pack" id="view-evidence-pack" hidden>
+<article class="project wrap" aria-labelledby="h-evidence-pack">
+  <p class="crumbs"><a href="#home">Follow-Through</a> <span aria-hidden="true">/</span> Evidence</p>
+  <header class="project-head">
+    <p class="eyebrow">A reading list, re-keyed and checked</p>
+    <h1 id="h-evidence-pack">Circularity evidence pack</h1>
+    <p class="lede">A rapid evidence review of India&#x27;s plastic packaging chain, its research gap, and the checks that turned it into the thesis literature base.</p>
+    <p class="chips"><span class="layer evidence"><span class="dot" aria-hidden="true"></span>Evidence</span> <span class="chip done">DONE</span></p>
+  </header>
+  <dl class="facts"><div><dt>Role</dt><dd>Researcher</dd></div><div><dt>When</dt><dd>Sept 2026; checked Nov 2026</dd></div><div><dt>Scope</dt><dd>87 references on EPR, traceability, informal work, behaviour</dd></div><div><dt>Status</dt><dd>DONE (desk); corrected</dd></div></dl>
+  <div class="cols">
+    <div class="main">
+      <section><h2>Problem</h2><p>Indian studies tend to examine one layer of the plastic chain at a time. A thesis needs to know where the evidence stops.</p></section>
+      <section><h2>What I did</h2><ul class="ticks"><li>Compiled a 19-page evidence pack with 87 references (with AI assistance; its own note says it was not re-audited).</li><li>In review, found that 10 of its 13 in-text citation numbers pointed to the wrong reference, and re-keyed them.</li><li>Opened and checked 29 sources for the thesis literature map, and kept the pack&#x27;s carefully hedged research gap.</li></ul></section>
+      
+      
+      <blockquote class="gap"><p>No evaluated study found in this review jointly tests repeated household participation, waste-picker inclusion, batch-level custody, reconciliation with EPR certificates, and an environmental outcome with stated boundaries.</p><cite>Research gap, as hedged in the evidence pack: a bounded review finding, not proof that no such study exists.</cite></blockquote>
+      <section><h2>Evidence</h2><ul class="ev"><li><span class="chip done">DONE</span> <span>Errata with the corrected citation table and the 15 load-bearing sources to read first.</span></li></ul></section>
+      <section><h2>Outcome</h2><p>The pack became the reading list behind the dossier, the fact sheet and the Claim Ladder.</p></section>
+      <section class="limits"><h2>Honest limits</h2><ul><li>Most of the 87 entries are uncited in the text; several are duplicates or landing pages.</li><li>Only checked sources are quoted anywhere in this portfolio.</li></ul></section>
+      <section><h2>Next</h2><p>Annotate the 15 load-bearing sources in the student&#x27;s own words (IN PROGRESS from Dec 2026).</p></section>
+    </div>
+    <div class="side"><figure class="shot"><img src="img/evidence-pack-pack_research_gap.webp" alt="Page excerpt titled A Defensible Interaction and Service-Design Thesis, listing five things no evaluated study tests together." loading="lazy" decoding="async"><figcaption>The pack&#x27;s research gap, hedged as a bounded review finding (Sept 2026).</figcaption></figure><figure class="shot"><img src="img/evidence-pack-board_overview.webp" alt="A tall dark research board with handwritten notes and page thumbnails." loading="lazy" decoding="async"><figcaption>The original research board: notes, pasted advice and the 19-page pack.</figcaption></figure><aside class="docs local-only" aria-label="Files"><h2>Files</h2><ul><li><a href="docs/evidence-pack-deck.pdf">Deck (PDF)</a></li><li><a href="docs/evidence-pack-case-study.pdf">One-page case study</a></li><li><a href="docs/evidence-pack-poster.pdf">Poster</a></li></ul></aside></div>
+  </div>
+  <p class="cta"><a class="button ghost" href="#home">Back to all projects</a></p>
+</article></div><div class="view" data-view="renewear" id="view-renewear" hidden>
+<article class="project wrap" aria-labelledby="h-renewear">
+  <p class="crumbs"><a href="#home">Follow-Through</a> <span aria-hidden="true">/</span> Other design work</p>
+  <header class="project-head">
+    <p class="eyebrow">Other design work · UI concept sprint, 2024</p>
+    <h1 id="h-renewear">ReneWear</h1>
+    <p class="lede">A mobile concept for reselling, upcycling, donating and renting clothes, made in a short UI sprint.</p>
+    <p class="chips"><span class="layer other"><span class="dot" aria-hidden="true"></span>Other design work</span> <span class="chip concept">CONCEPT</span></p>
+  </header>
+  <dl class="facts"><div><dt>Role</dt><dd>UI designer</dd></div><div><dt>When</dt><dd>2024</dd></div><div><dt>Context</dt><dd>Concept sprint</dd></div><div><dt>Status</dt><dd>CONCEPT; no user research</dd></div></dl>
+  <div class="cols">
+    <div class="main">
+      <section><h2>Problem</h2><p>Wardrobes fill with clothes worn once; resale and donation routes exist but are scattered.</p></section>
+      <section><h2>What I did</h2><ul class="ticks"><li>Information architecture and 15 phone screens: resale, upcycle requests, donation with an anonymous option, rental, order tracking.</li><li>An Indian category set (saree, lehenga choli, dupattas, suit sets).</li><li>Desk study of GOONJ&#x27;s clothing work as a precedent [facts to be checked on goonj.org].</li></ul></section>
+      
+      
+      
+      <section><h2>Evidence</h2><ul class="ev"><li><span class="chip concept">CONCEPT</span> <span>Screens and IA only. No survey, interviews or testing.</span></li></ul></section>
+      <section><h2>Outcome</h2><p>Shown as interface craft. It sits outside the Follow-Through thesis because it does not study behaviour.</p></section>
+      <section class="limits"><h2>Honest limits</h2><ul><li>No user research. A separate document filed under this name belonged to another project and was removed.</li></ul></section>
+      <section><h2>Next</h2><p>None planned.</p></section>
+    </div>
+    <div class="side"><figure class="shot"><img src="img/renewear-rw-hero.webp" alt="Two phones showing the ReneWear clothing app home and catalogue." loading="lazy" decoding="async"><figcaption>ReneWear concept screens (2024). CONCEPT.</figcaption></figure><figure class="shot"><img src="img/renewear-rw-screens.webp" alt="A grid of mobile app screens for a clothing resale and donation app." loading="lazy" decoding="async"><figcaption>Fifteen screens: resale, upcycle, donation, rental, order tracking.</figcaption></figure><aside class="docs local-only" aria-label="Files"><h2>Files</h2><ul><li><a href="docs/renewear-deck.pdf">Deck (PDF)</a></li></ul></aside></div>
+  </div>
+  <p class="cta"><a class="button ghost" href="#home">Back to all projects</a></p>
+</article></div><div class="view" data-view="research" id="view-research" hidden>
+<article class="wrap research" aria-labelledby="h-research">
+  <header class="project-head">
+    <p class="eyebrow">Thesis plan · <span class="chip planned">PLANNED</span></p>
+    <h1 id="h-research">The research plan</h1>
+    <p class="lede">A service-first study in three phases: map where follow-through breaks, co-design the service with the people who run it, then test it in the field. Nothing below reports results yet.</p>
+  </header>
+  <section><h2>Three questions</h2><ol class="rq"><li><h3>RQ1 · Service</h3><p>Where does follow-through break in the everyday flow of low-value plastic around a worksite colony or campus, and which service conditions restore it?</p></li><li><h3>RQ2 · Feedback and identity</h3><p>Compared with the same collection service alone, do a weekly Trust Receipt and a short weekly group routine with identity framing raise segregation quality and repeat participation over six to eight weeks?</p></li><li><h3>RQ3 · Evidence</h3><p>What evidence, from whom and at what cost per kilogram, supports each rung of the Claim Ladder, and how far can a small pilot honestly climb?</p></li></ol></section>
+  <section><h2>What I expect, and how I could be wrong</h2><ul class="hyp"><li><strong>H1</strong> Groups that receive a weekly Trust Receipt show lower contamination and higher repeat participation than matched groups without.</li><li><strong>H2</strong> Identity-framed stations produce a higher share of correctly disposed items than standard signage (tested with weekly swaps).</li><li><strong>H3</strong> Without feedback, participation decays after the first weeks; receipts flatten the decay.</li><li><strong>H4</strong> Saying openly what cannot yet be claimed does not reduce participation.</li></ul></section>
+  <section><h2>Where a sachet goes, and where the service would send it</h2>
+    <figure class="diagram"><img class="d-dark" src="img/sachet-flow-dark.webp" alt="Hypothesis map: today a sachet bought at a kiosk is discarded on the ground or in a mixed bin, swept up and dumped or burnt because no scrap dealer buys it. With the service it goes dry into a blue bag, through a paid collector to a named receiver, and a Trust Receipt returns to the group." width="1600" height="900" loading="lazy"><img class="d-light" src="img/sachet-flow-light.webp" alt="Hypothesis map: today a sachet bought at a kiosk is discarded on the ground or in a mixed bin, swept up and dumped or burnt because no scrap dealer buys it. With the service it goes dry into a blue bag, through a paid collector to a named receiver, and a Trust Receipt returns to the group." width="1600" height="900" loading="lazy"></figure></section>
+  <section><h2>The service, drawn before it is tested</h2>
+    <figure class="diagram"><img class="d-dark" src="img/service-blueprint-v0-dark.webp" alt="Service blueprint version 0 with six stages (discard, Seva Circle, handover, check and weigh, deliver, receipt) across participant, frontstage, backstage, support and evidence lanes, with three marked failure points." width="1800" height="1060" loading="lazy"><img class="d-light" src="img/service-blueprint-v0-light.webp" alt="Service blueprint version 0 with six stages (discard, Seva Circle, handover, check and weigh, deliver, receipt) across participant, frontstage, backstage, support and evidence lanes, with three marked failure points." width="1800" height="1060" loading="lazy"></figure></section>
+  <section><h2>Measures</h2><p>Weekly participants (first-time and returning), repeat participation, kilograms per stream, contamination by weight, correct-disposal share at stations, sharp items handed over unwrapped, and cost per kilogram.</p>
+    <figure class="diagram"><img class="d-dark" src="img/claim-ladder-dark.webp" alt="The Claim Ladder: six rungs from collected, segregated and verified, delivered, processed, reintegrated, to life-cycle outcome. A small pilot can usually evidence the first three." width="1600" height="900" loading="lazy"><img class="d-light" src="img/claim-ladder-light.webp" alt="The Claim Ladder: six rungs from collected, segregated and verified, delivered, processed, reintegrated, to life-cycle outcome. A small pilot can usually evidence the first three." width="1600" height="900" loading="lazy"></figure></section>
+  <section><h2>What the literature says</h2><p class="section-lede">29 sources, each opened and checked. The gap: no study found tests traceable feedback, identity or ritual framing and waste-worker inclusion together, in a Tier-3 or Tier-4 town, over weeks.</p><ul class="lit"><li><h3>Knowing is a weak cause of doing</h3><p>Intention changes behaviour only modestly; habits run on context and cues.</p><cite>Kollmuss &amp; Agyeman 2002; Sheeran &amp; Webb 2016; Lally et al. 2010; Michie et al. 2011</cite></li><li><h3>Identity, norms and ritual work alone, rarely together</h3><p>Identity wording, salient norms, watching eyes, normative feedback and ritual each have evidence; none was found combined.</p><cite>Bryan et al. 2011; Cialdini et al. 1990; Schultz 1999; Hobson et al. 2018</cite></li><li><h3>In India, service and activation must move together</h3><p>A guaranteed segregated service plus household encouragement raised segregated disposal by over 200%, still present at six months; the service alone did little.</p><cite>Wadehra, Nie &amp; Alpízar 2026; Wadehra &amp; Mishra 2018</cite></li><li><h3>Value and trust break between the bin and the recycler</h3><p>EPR certificates outran recycling capacity; informal workers are outside the value flow.</p><cite>Biswas et al. 2024 (CSE); Gill 2009; Wilson et al. 2006</cite></li></ul></section>
+  <section><h2>What I borrow from 14 international programmes</h2><ul class="principles"><li><strong>Make the handover a fixed, social moment.</strong> <span>Taipei fixed-time collection; Rwanda Umuganda; Japanese school cleaning</span></li><li><strong>Tell people where it went, per batch.</strong> <span>Plastic Bank exchange logs; Seoul RFID weighing; German deposit clearing</span></li><li><strong>Use cheap cues at the bin, and rotate them.</strong> <span>Keep Britain Tidy; Hubbub Ballot Bin; the EAST framework</span></li><li><strong>Protect the poor and informal workers from price signals.</strong> <span>Seoul volume-based fees and their side effects</span></li></ul></section>
+  <section class="limits"><h2>Ethics and safeguarding</h2><p>Human-research ethics approval before fieldwork; oral consent in Hindi or English; group-level data only, never shared with supervisors; no questions that ask anyone to admit an offence; collectors paid for their time; cultural framing voluntary with a secular alternative; no data from children.</p></section>
+  <aside class="docs local-only" aria-label="Research files"><h2>Files</h2><ul><li><a href="docs/THESIS_DOSSIER.pdf">Thesis dossier (PDF)</a></li><li><a href="docs/research-proposal.pdf">Research proposal (PDF)</a></li><li><a href="docs/partner-brief.pdf">Partner brief (PDF)</a></li><li><a href="docs/recruiter-deck.pdf">Recruiter deck (PDF)</a></li><li><a href="docs/claim-ladder.html">Claim Ladder</a></li><li><a href="docs/fact-sheet.html">Fact sheet</a></li></ul></aside>
+</article></div><div class="view" data-view="about" id="view-about" hidden>
+<article class="wrap about" aria-labelledby="h-about">
+  <header class="project-head">
+    <p class="eyebrow">About</p>
+    <h1 id="h-about">Abhimanyu Shukla</h1>
+    <p class="lede">I design and test ways to turn awareness into sustained action, in places where infrastructure, culture and material meet.</p>
+  </header>
+  <div class="cols">
+    <div class="main">
+      <section><h2>Path</h2>
+        <ul class="ticks">
+          <li><strong>2024.</strong> B.Des, UP Institute of Design, Noida. Degree project on household wet waste: a survey of 70 households, an awareness website and three physical prototypes.</li>
+          <li><strong>2025–26.</strong> M.Des Interaction Design, IIT Hyderabad. A culturally rooted behaviour-design framework (Aham Brahmasmi) and a desk study of sachet waste in Madhya Pradesh.</li>
+          <li><strong>Jun–Jul 2026.</strong> Design Research Intern, L&amp;T Construction (Water &amp; Effluent Treatment), Satna MVRWSS project: awareness sessions with local women and nearby schools, an ecobrick demonstration, and a pilot proposal to site management.</li>
+          <li><strong>Nov 2026 onward.</strong> Follow-Through, my thesis: a campus sprint, then a field pilot.</li>
+        </ul></section>
+      <section><h2>How I work</h2>
+        <p>Every claim in this portfolio carries a label: <span class="chip done">DONE</span> <span class="chip progress">IN PROGRESS</span> <span class="chip planned">PLANNED</span> <span class="chip concept">CONCEPT</span>. Every number names its source. Every impact claim names its rung on the Claim Ladder. In November 2026 I audited my own earlier materials and removed every figure I could not trace; the corrections are logged.</p></section>
+      <section><h2>What I am looking for</h2>
+        <ul class="ticks">
+          <li><strong>A field partner</strong> for 8–14 weeks of site access, one point of contact and ten minutes inside an existing routine.</li>
+          <li><strong>A career partner</strong> in EPR, recycling, packaging or ESG to co-guide the thesis and see the results.</li>
+          <li><strong>Roles</strong> in design research, service design and product strategy where evidence matters.</li>
+        </ul></section>
+    </div>
+    <div class="side"><section class="contact"><h2>Contact</h2><p>IIT Hyderabad, M.Des Interaction Design</p><p class="mono">[email]</p><p class="small">A one-page partner brief and a two-page research proposal are available on request.</p></section></div>
+  </div>
+</article></div></main>
+<footer class="site-foot"><div class="wrap"><p><strong>Follow-Through</strong> · Abhimanyu Shukla · M.Des Interaction Design, IIT Hyderabad</p><p class="small">Labels: DONE = happened, with a record; IN PROGRESS = started; PLANNED = designed, not started; CONCEPT = idea or prototype with no field use. Numbers carry their source. Last updated 16 November 2026.</p></div></footer>
+<script>(function () {
+  var views = Array.prototype.slice.call(document.querySelectorAll('.view'));
+  var names = {};
+  views.forEach(function (v) { names[v.getAttribute('data-view')] = v; });
+  var titles = { home: 'Follow-Through', research: 'Research plan · Follow-Through', about: 'About · Follow-Through' };
+  var first = true;
+  function show() {
+    var h = (location.hash || '#home').slice(1);
+    var anchor = null;
+    if (h === 'projects') { h = 'home'; anchor = 'projects'; }
+    if (!names[h]) h = 'home';
+    views.forEach(function (v) { v.hidden = v.getAttribute('data-view') !== h; });
+    document.querySelectorAll('[data-nav]').forEach(function (a) {
+      var n = a.getAttribute('data-nav');
+      var on = (n === 'projects' && (anchor || (h !== 'home' && h !== 'research' && h !== 'about'))) ||
+               (n === h && !anchor && n !== 'projects');
+      if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+    });
+    var heading = names[h].querySelector('h1');
+    document.title = titles[h] || ((heading ? heading.textContent : 'Project') + ' · Follow-Through');
+    if (anchor) {
+      var el = document.getElementById(anchor);
+      if (el) { if (first) setTimeout(function () { el.scrollIntoView(); }, 150); else el.scrollIntoView(); }
+    } else if (!first) {
+      window.scrollTo(0, 0);
+    }
+    if (!first) { var m = document.getElementById('main'); if (m) m.focus({ preventScroll: true }); }
+    first = false;
+  }
+  window.addEventListener('hashchange', show);
+  show();
+})();
+(function () {
+  var root = document.documentElement, KEY = 'ft-theme', fixed = root.getAttribute('data-default-theme');
+  if (!fixed) { try { var saved = localStorage.getItem(KEY); if (saved === 'light' || saved === 'dark') root.setAttribute('data-theme', saved); } catch (e) {} }
+  function current() {
+    var t = root.getAttribute('data-theme');
+    if (t) return t;
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  }
+  var btn = document.querySelector('[data-theme-toggle]');
+  if (!btn) return;
+  function label() {
+    var next = current() === 'dark' ? 'light' : 'dark';
+    btn.textContent = next === 'light' ? 'Light' : 'Dark';
+    btn.setAttribute('aria-label', 'Switch to ' + next + ' theme');
+  }
+  label();
+  btn.addEventListener('click', function () {
+    var next = current() === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem(KEY, next); } catch (e) {}
+    label();
+  });
+})();
+</script>
+</body>
+</html>
