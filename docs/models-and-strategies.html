@@ -1,0 +1,1169 @@
+<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Models And Strategies</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>:root{color-scheme:light}body{margin:0;background:#fff;color:#1F1F1F;font:400 16px/1.6 Inter,"Segoe UI",system-ui,sans-serif}
+main{max-width:900px;margin:0 auto;padding:40px max(16px,env(safe-area-inset-left,0px)) 64px}
+h1,h2,h3{color:#0F0F0F;font-weight:600;letter-spacing:-.025em;line-height:1.15}h1{font-size:2.2rem}h2{font-size:1.4rem;margin-top:2rem}
+a{color:#1F7A5C}code{font-family:"JetBrains Mono",Consolas,monospace;font-size:.88em;background:#F5F5F3;padding:.1em .3em;border-radius:4px}
+.tbl{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:.92rem;margin:1rem 0}th{font:500 .7rem/1.3 "JetBrains Mono",Consolas,monospace;letter-spacing:.08em;text-transform:uppercase;color:#5C5C5C;text-align:left;border-bottom:1px solid #0F0F0F;padding:.5rem}
+td{border-bottom:1px solid #E2E2E0;padding:.5rem;vertical-align:top}.back{font:500 .72rem/1 "JetBrains Mono",Consolas,monospace;letter-spacing:.1em;text-transform:uppercase}</style></head><body><main><p class="back"><a href="../index.html">← Follow-Through</a></p><h1>Models and strategies: what EcoCraft Phase 2 borrows, and what is different</h1>
+<p><strong>Status: DONE (desk research, 16 November 2026).</strong> Everything said here about EcoCraft Phase 2 is <strong>PLANNED</strong>. Nothing reports a result.
+Pages attempted for this file: 34 (24 opened, 10 failed). Sources reused from earlier verified files are cited by their IDs (B6–B13 in <code>GLOBAL_BENCHMARKS.md</code>; #22 in <code>sources/literature_verified.md</code>; F-rows in <code>PARTNER_MAP.md</code>). Every number below comes from an opened page, with its URL, or carries [UNVERIFIED]. "Borrows", "fit" and "does not transfer" are analysis, not claims made by the sources.</p>
+<hr />
+<h2>If you read only this</h2>
+<ol>
+<li>Nineteen models were read on opened pages: nine Indian and ten international. The Indian ones that kept people segregating (Indore, Ambikapur, Kerala's Haritha Karma Sena, SWaCH in Pune, Hasiru Dala in Bengaluru) share one base: a known person collects at a known time, is paid from fees and material sales, and has somewhere to send the material.</li>
+<li>Where that operating layer is missing, built assets stand idle. A 2024 report from rural Madhya Pradesh found village sheds and recovery facilities shut or unused (I8).</li>
+<li>Low-value plastic is the weak link everywhere. It made up about 82% of the dry waste collected door to door in Bengaluru (I5); Kerala panchayats pay ₹7–10 per kg to get rid of it (I3); Mysuru moved it only once brands' EPR money paid for a route (I6).</li>
+<li>EcoCraft Phase 2 (PLANNED) borrows that operating base and adds three things that none of the 19 models states it does in full: a per-batch <strong>Trust Receipt</strong> to the people who handed the waste over, a <strong>Claim Ladder</strong> rule that stops every claim at the last evidenced rung, and a contractor's worksite as the temporary host for nearby villages.</li>
+<li>Ecobricks stay as the hook and a visible proof object, packed to the published standard and labelled as storage, not recycling.</li>
+<li>Section 4 sets out eight strategies, each with its measure. Section 5 names the variables and the pilot design, matched to hypotheses H1–H5 in <code>THESIS_DOSSIER.md</code>.</li>
+</ol>
+<hr />
+<h2>1. What this project targets: a known receiver, repeat participation and claims that hold</h2>
+<p><strong>Who Phase 2 works with (PLANNED, 8–10 weeks):</strong> a workmen colony at the L&amp;T Satna MVRWSS site, women's groups in nearby villages, and 2–3 nearby schools, building on Phase 1 (DONE: awareness sessions, 10–15 ecobricks, own count; see <code>01_Fixed/EcoCraft/SATNA_FACT_SHEET.md</code>). The matched-group comparison in the dossier covers 8 of those weeks. L&amp;T has heard a phased proposal; no decision is recorded.</p>
+<p><strong>No baselines exist yet.</strong> Weeks 1–2 of Phase 2 set them. So most targets below are relative (against the group's own baseline or the control group), and the few fixed numbers are either rules or taken from a published standard.</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Target (all PLANNED)</th>
+<th>How it is measured</th>
+<th>Proposed level, and why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T1</td>
+<td><strong>Repeat participation</strong>: people keep handing over after week 1</td>
+<td>Returning ÷ total present, rolling four weeks, by head-count with no names (dossier §8)</td>
+<td>Proposed target, to be agreed: Trust Receipt groups stay above control groups by more than the week-to-week noise seen at baseline. This is H1's own test. No absolute number is set because there is no baseline; the Delhi study saw segregation fall from 54% to 43% in five weeks without feedback (Wadehra &amp; Mishra, 2018, in <code>statistics_verified.md</code> #9), so decay is the expected pattern to beat (H3).</td>
+</tr>
+<tr>
+<td>T2</td>
+<td><strong>Clean, segregated dry plastic</strong></td>
+<td>Contamination, % by weight, in a weekly sample per group (dossier §8)</td>
+<td>Proposed target, to be agreed with the receiver in week 1: at or below the receiver's acceptance limit by week 4. The receiver sets the limit, and it is not yet known. For ecobricks the standard is published: density above 0.33 g/ml and no more than 0.70 g/ml, clean and dry plastic only (N1, ecobricks.org).</td>
+</tr>
+<tr>
+<td>T3</td>
+<td><strong>A known receiver for every batch</strong></td>
+<td>Share of batch weight delivered with a slip naming receiver, date and weight (Claim Ladder rung 3)</td>
+<td>Proposed target, to be agreed: 100% of batches either delivered with a slip or reported as "not delivered". The figure is a rule, not an aspiration: a batch without a slip cannot be reported above rung 2.</td>
+</tr>
+<tr>
+<td>T4</td>
+<td><strong>Feedback actually reaches people</strong></td>
+<td>Fidelity log: did each Trust Receipt group get its receipt, on paper or WhatsApp, within 7 days of its handover?</td>
+<td>Proposed target, to be agreed: every week of the comparison (8 of 8). If receipts are late or skipped, H1 cannot be tested. Seven days keeps the receipt inside the weekly cycle, before the next handover.</td>
+</tr>
+<tr>
+<td>T5</td>
+<td><strong>Honest reporting</strong></td>
+<td>Count of public statements (receipts, slides, posts, reports) that claim a rung above the last evidenced one</td>
+<td>Rule: zero. Every claim names its rung (see <code>CLAIM_LADDER.md</code>).</td>
+</tr>
+<tr>
+<td>T6</td>
+<td><strong>Community ownership by women's groups and schools</strong></td>
+<td>Weeks in which a local woman or teacher runs the handover and the Seva Circle without the researcher present</td>
+<td>Proposed target, to be agreed with the groups: from week 6, at least half of the remaining weeks. The worksite host is temporary, so the test is whether the routine survives the researcher's absence.</td>
+</tr>
+<tr>
+<td>T7</td>
+<td><strong>Collector safety and fair pay</strong></td>
+<td>Sharp items handed over unwrapped, per week; collector hours paid (dossier §8–9)</td>
+<td>Rule: no unpaid collector hours. Sharp items: a falling trend from the group's own baseline; no number, because no baseline exists.</td>
+</tr>
+<tr>
+<td>T8</td>
+<td><strong>No harm to existing livelihoods</strong></td>
+<td>Kilograms of saleable material (PET, rigid plastic, metal) that still go to local kabadiwalas, per week</td>
+<td>Rule: saleable material keeps going to existing buyers (dossier §9). Phase 2 handles the low-value fraction they do not buy.</td>
+</tr>
+<tr>
+<td>T9</td>
+<td><strong>A cost a CSR team can budget</strong></td>
+<td>Cost per kg each week: bags, transport, collector time</td>
+<td>Reported weekly with its parts. No target level: the aim is a known number, not a low one.</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2>2. Indian models: regular service by paid local workers made segregation stick; low-value plastic is still unsolved</h2>
+<p>Nine models, chosen for relevance to household waste, women's groups, schools, small towns or villages, and low-value plastic. Alappuzha (Kerala) was opened but left out: the page described wet-waste treatment and said nothing about dry or plastic waste (see Sources).</p>
+<h3>I1 · Indore, Madhya Pradesh: service first, then segregation, then refusal of mixed waste</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>What it is</strong></td>
+<td>Indore Municipal Corporation's door-to-door collection, from a two-ward pilot in 2015 to full coverage by the end of 2016. Households segregate; staff refuse waste that is not segregated.</td>
+</tr>
+<tr>
+<td><strong>Key strategy</strong></td>
+<td>Make collection daily and reliable first, then ask for segregation, then refuse mixed waste.</td>
+</tr>
+<tr>
+<td><strong>Evidence</strong></td>
+<td>ThePrint (27 Nov 2021): categories grew from two to six; user charges ₹60 (slums), ₹90 (middle-class areas), ₹150 (posh areas) a month, with 86% recovery; about 1,500 vehicles and 11,000 sanitation workers, most of them women; officials said residents accepted segregation once vans came daily; NEPRA's plant processes 400 t of dry waste a day under a 14-year agreement from 2018. The Quint, from IndiaSpend (2 Oct 2019): vans play a song each morning and residents come out when they hear it; collection times were moved to suit residents' routines; NGOs, religious leaders' sermons and school competitions and oaths carried the message; repeat offenders were fined; a helpline had a 48-hour resolution rule; 468 vans tracked from a command centre; ₹27 crore user fees in 2017-18. <strong>Caveats:</strong> figures come from officials, contractors and a van driver; the "95% segregation" figure is a driver's remark and is not used (see <code>statistics_verified.md</code> #7); sanitation spending is large (about ₹1,200 crore a year, ThePrint).</td>
+</tr>
+<tr>
+<td><strong>Fit to Satna</strong></td>
+<td>Partial. Same state, so the name carries weight with MP officials. But Indore is a city of over 30 lakh with a municipal budget and powers to fine; Satna Phase 2 is a CSR pilot around a rural worksite.</td>
+</tr>
+<tr>
+<td><strong>Phase 2 borrows</strong></td>
+<td>A fixed weekly handover with a recognisable call, timed to each group's routine; add categories only after the first one works.</td>
+</tr>
+<tr>
+<td><strong>Does not transfer</strong></td>
+<td>Fines and refusal backed by municipal power. A CSR pilot cannot fine anyone, and refusing a low-value bag that has no buyer pushes it towards burning.</td>
+</tr>
+<tr>
+<td><strong>Sources</strong></td>
+<td>https://theprint.in/india/these-are-the-secrets-to-indores-5-year-cleanest-city-streak-and-its-not-rocket-science/772362 ; https://www.thequint.com/news/india/how-indore-set-an-example-by-becoming-the-cleanest-city-in-2019 (both accessed 2026-11-16). Also <code>PARTNER_MAP.md</code> F6.</td>
+</tr>
+</tbody>
+</table></div>
+<h3>I2 · Ambikapur, Chhattisgarh: a women's cooperative runs collection and sorting, paid from fees and sales</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>What it is</strong></td>
+<td>Women's self-help groups, federated as the Swachh Ambikapur Mission Sahakari Samiti, collect door to door every day and sort at Solid Liquid Resource Management (SLRM) centres, under the Municipal Corporation.</td>
+</tr>
+<tr>
+<td><strong>Key strategy</strong></td>
+<td>A women's cooperative runs collection and sorting, paid from user fees plus material sales.</td>
+</tr>
+<tr>
+<td><strong>Evidence</strong></td>
+<td>Mongabay-India (30 May 2023): 470 women in 34 SHGs; 19 SLRM centres covering 48 wards; three-member teams each serve 200–250 houses; about 50 t collected a day, about 90% sorted the same day into over 100 subcategories and sold, about 10% sent to cement factories as fuel; scrap dealers buy each evening for cash; fees ₹50 a month for households and ₹100–5,000 for businesses; fines ₹100 (first) and ₹500 (repeat) for not segregating; 2022-23 income almost ₹35 million (user charges ₹18.3 m, dry waste ₹12.5 m, compost ₹4 m); pay about ₹9,000 per member a month since March 2023, up from ₹2,000–2,500 early on. <strong>Caveats on the page:</strong> workers often skip gloves and masks; the CCTV system no longer works; anti-littering enforcement is weak; 5–10% of houses still hand over mixed waste; an auto-rickshaw driver said the corporation acts mainly near the national cleanliness survey. Note: 470 women at ₹9,000 a month is more than the stated income; the article says part of a sanitation tax is included. The Indian Tribal (2 Jan 2022): a founder member, a tribal woman, says sanitation workers used to be treated as untouchable and residents now call them "Swachchta Didi" and respect the work.</td>
+</tr>
+<tr>
+<td><strong>Fit to Satna</strong></td>
+<td>Strong on the operator model (women's groups, small city of about 2 lakh people). Weak on scale: Phase 2 covers one colony and a few villages, with no fee base.</td>
+</tr>
+<tr>
+<td><strong>Phase 2 borrows</strong></td>
+<td>A named women's team runs the handover point, keeps income from saleable plastic, and is introduced to contributors by name.</td>
+</tr>
+<tr>
+<td><strong>Does not transfer</strong></td>
+<td>User fees and fines need a municipal mandate; 100+ subcategories need daily volume and a centre.</td>
+</tr>
+<tr>
+<td><strong>Sources</strong></td>
+<td>https://india.mongabay.com/2023/05/ambikapurs-women-led-waste-management-system-also-generates-revenue-for-the-city/ ; https://theindiantribal.com/2022/01/02/swachchta-didi (both accessed 2026-11-16).</td>
+</tr>
+</tbody>
+</table></div>
+<h3>I3 · Kerala, Haritha Karma Sena: women's teams collect dry waste on fixed dates for a flat fee</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>What it is</strong></td>
+<td>Teams of Kudumbashree women, selected by each local body, collect non-biodegradable waste door to door against a user fee. Material goes through ward-level mini Material Collection Facilities to panchayat facilities, and Clean Kerala Company aggregates it.</td>
+</tr>
+<tr>
+<td><strong>Key strategy</strong></td>
+<td>Women's teams collect dry waste on fixed dates for a flat fee, through local collection points.</td>
+</tr>
+<tr>
+<td><strong>Evidence</strong></td>
+<td>Kudumbashree page: each worker visits at least 250 houses; waste is sorted by type (PVC, steel, bottles, e-waste and others); shredded plastic goes to road tarring through Clean Kerala Company; partners are Haritha Keralam Mission, Suchitwa Mission and Clean Kerala Company. Onmanorama (21 Jan 2023): 30,890 members statewide; ₹50–100 a month per household; a proposal to make the fee compulsory and require a fee receipt or card for local-body services; collection on set dates each month. Onmanorama (13 Aug 2024): the minister planned weekly removal of plastic. Onmanorama (18 Sep 2026), Kollam district: 3,026 members in 74 consortia across 73 local bodies (68 of them grama panchayats); ₹50 a month for households, ₹100 for businesses; 2,797 t of inorganic waste handled; panchayats pay agencies ₹7–10 per kg to dispose of non-recyclable or low-value plastic; a plan (not yet in force) to pay households for segregating. The same article reports over ₹29 crore "generated" in 2025-26 with no breakdown; that works out to over ₹100 per kg handled, which the article does not explain, so the figure is not used.</td>
+</tr>
+<tr>
+<td><strong>Fit to Satna</strong></td>
+<td>Strong on rural reach (grama panchayats), women's groups and fixed dates. Weak on the state machinery behind it (a statewide mission, a state aggregator, fee enforcement).</td>
+</tr>
+<tr>
+<td><strong>Phase 2 borrows</strong></td>
+<td>A fixed-date dry-waste round run by a women's team, with a written slip at each handover.</td>
+</tr>
+<tr>
+<td><strong>Does not transfer</strong></td>
+<td>Compulsory fees enforced through local-body services. Its paid disposal of low-value plastic shows Phase 2 must budget for moving it.</td>
+</tr>
+<tr>
+<td><strong>Sources</strong></td>
+<td>https://www.kudumbashree.org/pages/677 ; https://www.onmanorama.com/news/kerala/2023/01/21/user-fee-for-plastic-waste-collection-to-be-made-mandatory-soon.html ; https://www.onmanorama.com/news/kerala/2024/08/13/kerala-government-collect-plastic-waste-households-weekly-mb-rajesh.html ; https://www.onmanorama.com/news/kerala/2026/09/18/kollam-waste-management-success-haritha-karmasena-incentives.amp.html (all accessed 2026-11-16).</td>
+</tr>
+</tbody>
+</table></div>
+<h3>I4 · SWaCH, Pune: existing waste pickers become the paid door-to-door service</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>What it is</strong></td>
+<td>A cooperative of self-employed waste pickers that collects door to door under an agreement with Pune Municipal Corporation. It grew out of the KKPKP waste pickers' union (1993).</td>
+</tr>
+<tr>
+<td><strong>Key strategy</strong></td>
+<td>Integrate existing waste pickers as the paid door-to-door service instead of bypassing them.</td>
+</tr>
+<tr>
+<td><strong>Evidence</strong></td>
+<td>swachcoop.com ("Impact 2025", self-reported): 10 lakh households a day; 4,000+ waste pickers; 82,891 t recycled a year; ₹113 crore saved for the corporation; over 70% of Pune covered. Programmes include multilayer plastic collection with ITC and the corporation, and a "Recycling Trail" of field visits showing how the city handles its waste. Partnership page: a 2005 pilot trained 1,500 waste pickers; the cooperative formed in 2007; a five-year agreement with the corporation in 2008; over 850 t a day collected, of which about 150 t recycled and 130 t composted; ₹20 crore a year saved. <strong>Caveats:</strong> advocacy pages, self-reported; fees and members' earnings are not described on the pages opened.</td>
+</tr>
+<tr>
+<td><strong>Fit to Satna</strong></td>
+<td>Partial. The rule fits (the dossier already says: route material to existing collectors, never around them). A city cooperative built on a 30-year union cannot be recreated in 10 weeks.</td>
+</tr>
+<tr>
+<td><strong>Phase 2 borrows</strong></td>
+<td>Map local kabadiwalas and sanitation workers in week 1 and pay them as the channel. Borrow the Recycling Trail as a receiver visit for each women's group.</td>
+</tr>
+<tr>
+<td><strong>Does not transfer</strong></td>
+<td>The scale, the union history and the municipal contract.</td>
+</tr>
+<tr>
+<td><strong>Sources</strong></td>
+<td>https://swachcoop.com/ ; https://swachcoop.com/about/swach-pmc-partnership/ (both accessed 2026-11-16). Also <code>PARTNER_MAP.md</code> F10.</td>
+</tr>
+</tbody>
+</table></div>
+<h3>I5 · Hasiru Dala and Bengaluru's dry waste collection centres: door-to-door collection fills centres with low-value plastic</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>What it is</strong></td>
+<td>Dry waste collection centres (DWCCs) run by waste pickers with Hasiru Dala's support. Bengaluru's 2020 bye-law requires DWCCs to be run by waste pickers or their self-help groups.</td>
+</tr>
+<tr>
+<td><strong>Key strategy</strong></td>
+<td>Give waste pickers the dry-waste centre, with identity cards and a stable income.</td>
+</tr>
+<tr>
+<td><strong>Evidence</strong></td>
+<td>Citizen Matters (Nalini Shekar, Hasiru Dala co-founder, 20 May 2019): 198 DWCCs sanctioned, 166 working, 0.5–4.5 t a day each; 33 run by waste pickers with Hasiru Dala; after operators began door-to-door collection, low-value waste rose to about 82% of the dry waste collected (from a study with University of Washington students; the method is not given on the page); centres are overrun with bags of multilayer plastic and mattresses. Earlier verified: the 2020 bye-law and a ward DWCC run by a waste-picker entrepreneur with 16 mostly women workers (<code>literature_verified.md</code> #22, accessed 2026-11-15); 10,437 waste pickers given occupational ID cards and 8,781 linked to social security (<code>PARTNER_MAP.md</code> F9, accessed 2026-11-15).</td>
+</tr>
+<tr>
+<td><strong>Fit to Satna</strong></td>
+<td>Strong as a warning. If Phase 2 collects door to door, most of what it collects will be low-value plastic with no buyer.</td>
+</tr>
+<tr>
+<td><strong>Phase 2 borrows</strong></td>
+<td>Decide where low-value plastic goes before collecting it; weigh and report it as its own stream.</td>
+</tr>
+<tr>
+<td><strong>Does not transfer</strong></td>
+<td>A city bye-law, 166 centres and a citywide card scheme.</td>
+</tr>
+<tr>
+<td><strong>Sources</strong></td>
+<td>https://citizenmatters.in/dry-waste-collection-centres-need-design-changes-to-make-them-function-better/ (accessed 2026-11-16); Hasiru Dala case study PDF via <code>literature_verified.md</code> #22 and 30stades via <code>PARTNER_MAP.md</code> F9 (accessed 2026-11-15).</td>
+</tr>
+</tbody>
+</table></div>
+<h3>I6 · Mysuru and Saahas Zero Waste: brands' EPR money opened a paid route for multilayer plastic</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>What it is</strong></td>
+<td>Mysuru City Corporation runs a decentralised public-private "Zero Waste Management Scheme" with ward-level units. Saahas Zero Waste, funded by brand owners under EPR, built a reverse supply chain for multilayer plastic (MLP) from those units to authorised recycling or co-processing destinations, through a local scrap entrepreneur.</td>
+</tr>
+<tr>
+<td><strong>Key strategy</strong></td>
+<td>Brand EPR purchase orders create a paid route for multilayer plastic, with records at each step.</td>
+</tr>
+<tr>
+<td><strong>Evidence</strong></td>
+<td>Saahas case study (August 2020, self-reported): city of about 1 million, 400–450 t of waste a day; the chain runs from door-to-door collection to ward units, dry-waste centres, aggregation and dispatch; steps include data reconciliation, recycling or co-processing certificates from end destinations, reports to the EPR client and monthly third-party audits; 5,625 t collected from FY 2017-18 to June 2020 (462, 898, 2,527 and 1,738 t by year); the entrepreneur handles 10–12 t of dry waste a day with 26 field staff; the page says long-term purchase orders made collection steady and built trust. The same report converts the tonnage into 16,537 t CO2e "saved" and a seedling equivalent using a US EPA calculator, with no life-cycle method for this material.</td>
+</tr>
+<tr>
+<td><strong>Fit to Satna</strong></td>
+<td>Strong on the material: it is the clearest precedent for sachets and wrappers. Partial on the actors: L&amp;T is not a brand owner with a plastic EPR target, so the route would need an EPR processor or co-processor as the receiver.</td>
+</tr>
+<tr>
+<td><strong>Phase 2 borrows</strong></td>
+<td>Ask an EPR processor or co-processor to receive low-value plastic, and copy its paper chain (dispatch slip, certificate) into the Trust Receipt.</td>
+</tr>
+<tr>
+<td><strong>Does not transfer</strong></td>
+<td>City-scale brand purchase orders; the CO2e and seedling equivalents, which claim beyond the evidence and would fail the Claim Ladder at rung 6.</td>
+</tr>
+<tr>
+<td><strong>Sources</strong></td>
+<td>https://saahaszerowaste.com/explore/reports-and-case-study/lets-transform-reverse-supply-chain-for-plastic-waste-mysuru-case-study.pdf (accessed 2026-11-16; text extracted locally from the PDF). Also <code>PARTNER_MAP.md</code> F8.</td>
+</tr>
+</tbody>
+</table></div>
+<h3>I7 · Swachh Bharat Mission (Grameen) Phase II: a plastic unit per block, run by self-help groups or the panchayat</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>What it is</strong></td>
+<td>Phase II of the national rural sanitation mission provides for at least one Plastic Waste Management Unit (PWMU) in each block, fed by village segregation sheds, with shredding and baling for sale.</td>
+</tr>
+<tr>
+<td><strong>Key strategy</strong></td>
+<td>Village sheds feed one block-level unit that shreds and bales plastic for sale.</td>
+</tr>
+<tr>
+<td><strong>Evidence</strong></td>
+<td>Uttarakhand SBM-G page (updated 5 Jun 2025): one PWMU per block, up to ₹16 lakh per unit; Phase II approved in February 2020 and run from 2020-21 to 2024-25. Ballia (Uttar Pradesh) district note on the UP Panchayati Raj Department's server (unsigned working note, January 2026): two PWMUs; village sheds and tricycles for door-to-door collection; operation by SHGs or the gram panchayat, paid from sales of shredded or baled plastic and household user charges; monthly checks by the district panchayat officer; links planned to PWD road building and cement kilns. Challenges it lists: moving light plastic from remote villages is costly; household segregation is inconsistent; running costs exceed the value of processed plastic; local kabadiwalas are hard to bring in. The national number of working PWMUs is <strong>[UNVERIFIED]</strong> (PIB pages returned 403).</td>
+</tr>
+<tr>
+<td><strong>Fit to Satna</strong></td>
+<td>Strong: this is the government system the villages around the site belong to. Whether a PWMU operates in the site's block is <strong>[UNVERIFIED]</strong>.</td>
+</tr>
+<tr>
+<td><strong>Phase 2 borrows</strong></td>
+<td>In week 1, check whether the block's PWMU or a village shed near the site works; if so, deliver baled low-value plastic there against a slip.</td>
+</tr>
+<tr>
+<td><strong>Does not transfer</strong></td>
+<td>It is infrastructure, not a behaviour programme: nothing in it tells a household where its plastic went.</td>
+</tr>
+<tr>
+<td><strong>Sources</strong></td>
+<td>https://swajal.uk.gov.in/?p=6683 ; https://fs.upprd.in/Upload/SBMG_DOCUMENTS/639042682177494047_PWMU%20FRAMEWORK.pdf (both accessed 2026-11-16; the PDF text was extracted locally).</td>
+</tr>
+</tbody>
+</table></div>
+<h3>I8 · Rural Madhya Pradesh: built sheds stand idle where nobody is paid to run them</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>What it is</strong></td>
+<td>A 101Reporters investigation (10 Jan 2024) across Vidisha, Chhatarpur, Panna, Mandla and rural Bhopal: SBM-G assets, and two working exceptions run by NGOs.</td>
+</tr>
+<tr>
+<td><strong>Key strategy</strong></td>
+<td>Cluster villages and pay sanitation workers, so built assets actually operate.</td>
+</tr>
+<tr>
+<td><strong>Evidence</strong></td>
+<td>Figures quoted by the article: the SBM dashboard lists 16,515 waste collection and segregation centres and 34,989 villages with solid waste management in MP; a CSE scoping paper found 1.18% of 22,814 village panchayats with a plastic waste system and sheds (the CSE paper itself was not opened: <strong>[UNVERIFIED]</strong> at source). Observed: a recovery facility at Karimabad (Vidisha) set up about three years earlier is shut; a similar one at Vardha has not been used. The state SBM deputy commissioner told the reporter there was no village-level facility for solid and plastic waste, citing a lack of staff, monitoring and awareness. Working exceptions: Sarthak's model covers 222 panchayats in 22 clusters around Bhopal, with sanitation workers collecting about 107 t a day and SHGs making products from plastic and rubber; at Madla (Panna) an NGO collects 40–50 kg of plastic a round and sends it to a cement factory at Amanganj. Also: 405 t of plastic went into 938 km of roads in 2020-21.</td>
+</tr>
+<tr>
+<td><strong>Fit to Satna</strong></td>
+<td>Strong: Satna is in the same region and the same scheme. This is the closest evidence to what Phase 2 will meet.</td>
+</tr>
+<tr>
+<td><strong>Phase 2 borrows</strong></td>
+<td>Treat operations (a paid person, a schedule, a receiver) as the intervention, not the shed.</td>
+</tr>
+<tr>
+<td><strong>Does not transfer</strong></td>
+<td>Sarthak's 222-panchayat scale. The 1.18% figure stays second-hand until the CSE paper is opened.</td>
+</tr>
+<tr>
+<td><strong>Sources</strong></td>
+<td>https://101reporters.com/article/environment/Operational_issues_up_plastic_pollution_in_rural_areas_of_Madhya_Pradesh (accessed 2026-11-16).</td>
+</tr>
+</tbody>
+</table></div>
+<h3>I9 · Akshar Forum, Assam: pupils bring household plastic each week and the school turns it into ecobricks</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>What it is</strong></td>
+<td>A school in Pamohi, on the outskirts of Guwahati, that takes plastic waste from pupils in place of fees and packs it into ecobricks for building.</td>
+</tr>
+<tr>
+<td><strong>Key strategy</strong></td>
+<td>Children bring household plastic weekly; the school turns it into building material.</td>
+</tr>
+<tr>
+<td><strong>Evidence</strong></td>
+<td>Thomson Reuters Foundation, republished by Eco-Business (13 Jun 2019): pupils bring at least 20 pieces of plastic a week in exchange for free schooling; the plastic becomes ecobricks for construction; parents resisted at first and later sent plastic (no counts). <strong>Caveats:</strong> based on a phone interview with a co-founder; the plan for older pupils to earn from plastic is stated as an intention; no outcome data.</td>
+</tr>
+<tr>
+<td><strong>Fit to Satna</strong></td>
+<td>Partial. Schools near the site took part in Phase 1, and ecobricks are already EcoCraft's hook. But the dossier forbids data collection from children.</td>
+</tr>
+<tr>
+<td><strong>Phase 2 borrows</strong></td>
+<td>A weekly school "plastic day": children bring clean, dry wrappers from home; the school's batch is weighed as one; a picture card goes home to parents.</td>
+</tr>
+<tr>
+<td><strong>Does not transfer</strong></td>
+<td>Plastic as a fee, and children earning from waste: both tie a child's schooling or income to waste, which the pilot must not do.</td>
+</tr>
+<tr>
+<td><strong>Sources</strong></td>
+<td>https://www.eco-business.com/news/trash-for-teaching-indian-students-hope-to-set-example-on-plastic-recycling (accessed 2026-11-16).</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2>3. International models: the ecobrick standard, community builds and school committees; feedback and ritual from the benchmarks</h2>
+<h3>3.1 New models (opened for this file)</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Model</th>
+<th>What it is</th>
+<th>Key strategy</th>
+<th>Evidence (opened page, accessed 2026-11-16)</th>
+<th>Fit to Satna</th>
+<th>Phase 2 borrows</th>
+<th>Does not transfer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>N1</td>
+<td><strong>Global Ecobrick Alliance (GEA) ecobrick standard</strong>, based in Indonesia</td>
+<td>A published standard for what counts as an ecobrick: a transparent PET bottle packed solid with clean, dry used plastic.</td>
+<td>A shared standard and peer-checked log turn a home activity into countable units.</td>
+<td>Density above 0.33 g/ml and no more than 0.70 g/ml for a regular ecobrick; clean, dry plastic only; ecobricks are authenticated on the GoBrik platform, validated by three peers; the GEA describes itself as a not-for-profit with no corporate or government sponsorship. The page says dense ecobricks resist easy burning; N4 disputes the fire safety of plastic structures. No outcome data. https://ecobricks.org/en/what</td>
+<td>Strong: Phase 1 made 10–15 ecobricks (own count) with no recorded density.</td>
+<td>Weigh every brick, log density and the group that made it; pack only clean, dry soft plastic with no other buyer.</td>
+<td>The GEA's view that plastic should be kept out of industrial processing. Phase 2 sends surplus plastic to a receiver.</td>
+</tr>
+<tr>
+<td>N2</td>
+<td><strong>Bottle schools, Hug It Forward</strong>, Guatemala</td>
+<td>Schools built by communities with a concrete frame and ecobrick infill.</td>
+<td>A shared build makes a large, useful public object from household plastic.</td>
+<td>Theirworld (1 Feb 2018): 116 bottle schools completed, 6 under construction; about 6,500 ecobricks (roughly two tons of waste) in a two-classroom school; ecobricks sit between chicken wire and are covered in cement; whole communities take part; works with the education department and community mayors. No outcome evaluation; the page's claim that schools will last 100 years is not supported on the page. https://theirworld.org/?p=11327</td>
+<td>Partial: the community-build idea fits; structures do not.</td>
+<td>A shared bench or seat build for the school or colony, with a visible count of bricks needed.</td>
+<td>Building walls or rooms from ecobricks (fire and alkalinity risks, N4). The dossier already requires furniture to be load-tested.</td>
+</tr>
+<tr>
+<td>N3</td>
+<td><strong>Eco-Schools</strong>, Foundation for Environmental Education</td>
+<td>A whole-school programme run through a learner-led committee and seven steps.</td>
+<td>A pupil committee audits, plans, measures and reports one action at a time.</td>
+<td>Launched in 1994; over 100 countries, 54,000+ registered schools, 21,000+ Green Flags (as of January 2026). Seven Steps: Eco-Committee (learners with staff, parents and community), Sustainability Review, Activate the Curriculum, Action Plan, Measure Impact, Inform and Involve, Eco-Code. No waste outcome data on the pages opened; India's operator not stated. https://www.ecoschools.global/ ; https://www.ecoschools.global/seven-steps-methodology</td>
+<td>Partial: suits the 2–3 nearby schools as an awareness frame.</td>
+<td>A small school committee (pupils, a teacher, one mother from a women's group) that sets one waste action and shares the school's monthly kilograms.</td>
+<td>The certification cycle, and any measurement of individual children.</td>
+</tr>
+<tr>
+<td>N4</td>
+<td><strong>Ecobrick risks: University of the Witwatersrand Q&amp;A</strong> (risk source, not a model)</td>
+<td>An engineering professor's assessment of ecobricks.</td>
+<td>—</td>
+<td>24 Jul 2019: a plastic-bottle structure could burn out of control and release toxic gases; alkaline cement may react with plastic; ecobricks are low-grade recycling, better than none; plastic breaks into microplastics; reducing use and high-grade recycling are preferred. https://www.wits.ac.za/news/latest-news/research-news/2019/2019-07/qa-are-ecobricks-the-answer-to-plastic-pollution.html (also <code>statistics_verified.md</code> #10)</td>
+<td>Applies directly to EcoCraft's ecobricks and furniture.</td>
+<td>Label ecobricks as storage, not recycling; keep them away from cooking fires; no structural use.</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<h3>3.2 Benchmarks reused from <code>GLOBAL_BENCHMARKS.md</code> (opened 2026-11-15; B6 and B10 re-opened 2026-11-16)</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Model</th>
+<th>Key strategy</th>
+<th>Evidence (as recorded)</th>
+<th>Phase 2 borrows</th>
+<th>Does not transfer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B6</td>
+<td>Kamikatsu Zero Waste Center, Japan</td>
+<td>Residents bring and self-sort waste at one centre.</td>
+<td>13 types, 45 categories; recycling rate "above 80%" with no method; the page asks what to do about the remaining 20%. Re-opened 2026-11-16: the page does <strong>not</strong> describe signs telling residents where each category goes. https://zwtk.jp/en/</td>
+<td>Say plainly what is not yet solved, as the page does with its 20%.</td>
+<td>45 categories and self-sorting by time-rich residents.</td>
+</tr>
+<tr>
+<td>B7</td>
+<td>Taipei fixed-time collection and per-bag fee, Taiwan</td>
+<td>Collection only at fixed times and places.</td>
+<td>Household waste −65%, recycling 2% → over 66%, no dates given.</td>
+<td>The fixed handover moment as the contact point for a receipt.</td>
+<td>Per-bag fees and enforcement.</td>
+</tr>
+<tr>
+<td>B8</td>
+<td>Seoul volume-based fee with RFID weighing, South Korea</td>
+<td>Charge by weight and let households see their own amount.</td>
+<td>Waste −8% (1995) and −11% (1996) against 1994; the page discusses illegal dumping and contested attribution.</td>
+<td>Weight per batch as the core line of the receipt; report side effects.</td>
+<td>Individual charging and RFID hardware.</td>
+</tr>
+<tr>
+<td>B10</td>
+<td>Plastic Bank, global</td>
+<td>Log every exchange and pay collectors.</td>
+<td>10.6 bn bottles exchanged since 2013 (self-reported). Re-opened 2026-11-16: each exchange is logged (weight, branch, date) against its funder, shown to backers on a public page; the page does <strong>not</strong> say collectors see the record. https://plasticbank.com/</td>
+<td>A per-batch log, but turned towards the contributors, not the funders.</td>
+<td>Blockchain and credit sales.</td>
+</tr>
+<tr>
+<td>B11</td>
+<td>Bank sampah (waste banks), Indonesia</td>
+<td>Neighbourhood collection points with an education role.</td>
+<td>Almost 17,000 waste banks, not all active; Rp92 bn a month is described as a "potential", not a measured total.</td>
+<td>A local point where collection and learning sit together.</td>
+<td>A new "bank" that could undercut kabadiwalas.</td>
+</tr>
+<tr>
+<td>B12</td>
+<td>Umuganda, Rwanda</td>
+<td>A fixed monthly day of shared work followed by a meeting.</td>
+<td>No outcome numbers; attendance is checked, travel restricted.</td>
+<td>A short shared routine with a meeting attached (the Seva Circle).</td>
+<td>Compulsion.</td>
+</tr>
+<tr>
+<td>B13</td>
+<td>School cleaning (soji), Japan</td>
+<td>Rotating pupil duties at a set time.</td>
+<td>Practice description only.</td>
+<td>Rotating roles in the school committee.</td>
+<td>Unpaid cleaning duty for workers, and any rota that falls on the lowest-status group.</td>
+</tr>
+</tbody>
+</table></div>
+<p>B1 (EAST) and B5 (Hubbub Ballot Bin) are used as design references in Section 4 but are not in the comparison matrix: they are a framework and a single-item bin, not waste services. Sources for B7, B8, B11–B13 are listed in <code>GLOBAL_BENCHMARKS.md</code>.</p>
+<hr />
+<h2>4. Strategy extraction: eight moves for EcoCraft Phase 2</h2>
+<p>All PLANNED. "From" names the models that supply the mechanism; the Satna adaptation is analysis.</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Strategy</th>
+<th>From</th>
+<th>How we adapt it at Satna</th>
+<th>What we will measure</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S1</td>
+<td><strong>One fixed weekly handover per group, same place, same person, timed to the group's routine</strong></td>
+<td>I1, I2, I3, B7</td>
+<td>One slot a week per group (colony gate after the shift, the women's group meeting, the school's plastic day), with a call or WhatsApp reminder that morning.</td>
+<td>Scheduled handovers held on time (%); repeat participation</td>
+</tr>
+<tr>
+<td>S2</td>
+<td><strong>Women's groups and local collectors run the service, and are paid</strong></td>
+<td>I2, I3, I4, I5, I7</td>
+<td>A village women's team runs the handover point and keeps income from saleable plastic; L&amp;T CSR (if agreed) pays collector time during the pilot. Kabadiwalas keep the saleable fraction. No household fee in the pilot.</td>
+<td>Collector hours paid; weeks run by a local woman or teacher (T6); kg of saleable material to kabadiwalas (T8)</td>
+</tr>
+<tr>
+<td>S3</td>
+<td><strong>Start with two dry streams, then hold the line kindly</strong></td>
+<td>I1, I3, I5</td>
+<td>Two bags: "sells" (PET, rigid plastic, metal) and "does not sell" (wrappers, sachets, films). From week 3, a contaminated bag is handed back with a picture card showing what to remove. No fines.</td>
+<td>Contamination % by weight per stream; bags handed back (%)</td>
+</tr>
+<tr>
+<td>S4</td>
+<td><strong>Fix the receiver before the campaign</strong></td>
+<td>I6, I7, I8, I3</td>
+<td>In week 1, confirm a receiver for low-value plastic: a block PWMU, an aggregator, an EPR processor or a cement kiln (Satna-district co-processing is [UNVERIFIED], <code>PARTNER_MAP.md</code> F1–F2). Ecobricks are the stated fallback.</td>
+<td>Batch kg delivered with a slip (rung 3, T3); receiver acceptance (% of delivered kg accepted)</td>
+</tr>
+<tr>
+<td>S5</td>
+<td><strong>Tell each group where its batch went, every week (Trust Receipt)</strong></td>
+<td>B10, B8, I6, I4</td>
+<td>A one-page receipt in Hindi, on paper or WhatsApp: kg, receiver, date, rung reached, and what is "not claimed". One receiver visit per women's group, like SWaCH's Recycling Trail.</td>
+<td>H1, H3, H4; receipt fidelity (T4)</td>
+</tr>
+<tr>
+<td>S6</td>
+<td><strong>Schools carry the message home; adults do the handling</strong></td>
+<td>I9, I1, N3, B13</td>
+<td>School sessions stay awareness-only. A small eco-committee runs a weekly plastic day; the school's batch is weighed as one; a picture card goes home.</td>
+<td>School kg per week (school level only, no child data); picture cards sent home (count)</td>
+</tr>
+<tr>
+<td>S7</td>
+<td><strong>A ten-minute weekly Seva Circle that names and thanks the collector</strong></td>
+<td>B12, B13, I1, I2</td>
+<td>At the handover, a short routine: the week's receipt read out, the collector named and thanked, one sorting tip. Each group chooses a seva frame or a secular frame.</td>
+<td>Head-count, first-time and returning; frame chosen; acceptance in interviews</td>
+</tr>
+<tr>
+<td>S8</td>
+<td><strong>Ecobricks to the standard, labelled as storage</strong></td>
+<td>N1, N2, N4, I9</td>
+<td>Only clean, dry soft plastic with no other buyer goes into bricks. Each brick weighed and logged by group; furniture load-tested and kept away from fire.</td>
+<td>Bricks within 0.33–0.70 g/ml (%); kg stored in bricks vs kg delivered to a receiver</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2>5. Variables: what decides whether people act, and how Phase 2 tests it</h2>
+<h3>5.1 Behavioural and system variables</h3>
+<p>COM-B: C = capability, O = opportunity, M = motivation (Michie et al., 2011, in <code>literature_verified.md</code>).</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>COM-B</th>
+<th>Models that act on it</th>
+<th>How Phase 2 acts on it</th>
+<th>Indicator and instrument</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Knowing what goes where</td>
+<td>C (psychological)</td>
+<td>I1 (NGOs, schools), I3 (item list), I9, N3</td>
+<td>Two-stream picture card; Phase 1 sessions</td>
+<td>Group-level picture-sorting task, adults only, weeks 0 and 8</td>
+<td>Context</td>
+</tr>
+<tr>
+<td>Skill: cleaning, drying, packing</td>
+<td>C (physical)</td>
+<td>N1, I9</td>
+<td>Packing demonstration; density check</td>
+<td>Ecobrick density (g/ml); % within standard</td>
+<td>Context</td>
+</tr>
+<tr>
+<td>Convenience: distance, time, frequency</td>
+<td>O (physical)</td>
+<td>I1, I2, I3, B7</td>
+<td>Weekly slot within walking distance</td>
+<td>Distance to handover point (m); minutes per handover; slots held (%)</td>
+<td>Moderator (distance); held equal across arms</td>
+</tr>
+<tr>
+<td>Prompt at the right moment</td>
+<td>O (physical) + M (automatic)</td>
+<td>I1 (van song), B7</td>
+<td>Call or WhatsApp reminder on handover morning</td>
+<td>Reminder log</td>
+<td>Context, held equal</td>
+</tr>
+<tr>
+<td>Social visibility and norms</td>
+<td>O (social)</td>
+<td>I1, B12, B13</td>
+<td>Seva Circle head-count shown at the handover</td>
+<td>Head-count, first-time and returning</td>
+<td>Part of treatment (IV)</td>
+</tr>
+<tr>
+<td>Identity and meaning</td>
+<td>M (reflective)</td>
+<td>I1 (sermons), I2 ("Swachchta Didi"), N3 (Eco-Code), B13</td>
+<td>Seva or secular frame, chosen by the group</td>
+<td>Frame chosen; interview coding; H2 tested on campus</td>
+<td>IV (campus, H2); bundled at Satna</td>
+</tr>
+<tr>
+<td>Habit and routine</td>
+<td>M (automatic)</td>
+<td>I1, I3, B13</td>
+<td>Same day, same place for 8 weeks</td>
+<td>Repeat participation, rolling four weeks</td>
+<td>DV</td>
+</tr>
+<tr>
+<td>Feedback on where the waste went</td>
+<td>M (reflective)</td>
+<td>B10, B8, I4, I6</td>
+<td>Weekly Trust Receipt per group</td>
+<td>Receipt sent on time (fidelity log)</td>
+<td>IV (H1, H3)</td>
+</tr>
+<tr>
+<td>Trust in the downstream chain</td>
+<td>M (reflective)</td>
+<td>I6 (purchase orders built trust), I1 (trust credited by a consultant)</td>
+<td>Receipt plus one receiver visit</td>
+<td>Three trust items in interviews, weeks 0 and 8</td>
+<td>DV (secondary; mechanism)</td>
+</tr>
+<tr>
+<td>Incentive or price</td>
+<td>M (reflective)</td>
+<td>I1, I2, I3 (fees); I9 (plastic as fee); B11</td>
+<td>None for households; collectors paid</td>
+<td>Logged as zero</td>
+<td>Context, held at zero</td>
+</tr>
+<tr>
+<td>Enforcement</td>
+<td>O (social)</td>
+<td>I1, I2 (fines), I3 (service denial), B12</td>
+<td>No fines; bags handed back with a card from week 3</td>
+<td>Bags handed back (%)</td>
+<td>Context</td>
+</tr>
+<tr>
+<td>Collector dignity and safety</td>
+<td>O (social); C for collectors</td>
+<td>I2, I5, I4</td>
+<td>Collector named and thanked; gloves; sharps wrapped</td>
+<td>Sharp items handed over unwrapped per week</td>
+<td>DV (safety)</td>
+</tr>
+<tr>
+<td>Receiver availability</td>
+<td>O (physical), system</td>
+<td>I6, I7, I8, I3</td>
+<td>Named receiver confirmed in week 1; ecobrick fallback</td>
+<td>Batch kg delivered with slip (rung 3)</td>
+<td>DV (receiver acceptance)</td>
+</tr>
+<tr>
+<td>Material value</td>
+<td>O (physical), system</td>
+<td>I2, I5, I3</td>
+<td>Saleable fraction to kabadiwalas; low-value to receiver</td>
+<td>kg saleable vs low-value per week</td>
+<td>Moderator</td>
+</tr>
+<tr>
+<td>Storage space at home</td>
+<td>O (physical)</td>
+<td>I3 (monthly dates mean storing)</td>
+<td>Weekly slot; bags provided</td>
+<td>Bags issued; interview item</td>
+<td>Context</td>
+</tr>
+<tr>
+<td>Literacy</td>
+<td>C (psychological)</td>
+<td>B1 (assumes text), B6 (45 categories)</td>
+<td>Picture cards; receipt read aloud</td>
+<td>Facilitator's group-level note, no individual testing</td>
+<td>Moderator</td>
+</tr>
+<tr>
+<td>Group type: colony, women's group, school</td>
+<td>—</td>
+<td>—</td>
+<td>Different slots and facilitators per type</td>
+<td>Recorded per group</td>
+<td>Moderator</td>
+</tr>
+</tbody>
+</table></div>
+<h3>5.2 Pilot design in plain terms</h3>
+<ul>
+<li><strong>Unit of analysis:</strong> the group (a colony block or crew, a village women's group). Groups are matched in pairs on size and baseline contamination (dossier §7). School batches are recorded at school level and kept out of the matched comparison, because the dossier forbids data from children.</li>
+<li><strong>Independent variables:</strong></li>
+<li>IV1 <strong>Trust Receipt</strong> (yes / no): H1, H3, H4.</li>
+<li>IV2 <strong>Identity framing vs standard signage</strong>: tested cleanly on campus (H2, ABAB swaps).</li>
+<li>IV3 (optional) <strong>delivery format</strong>: a 10-minute talk inside a toolbox talk vs a stand-alone session (H5, if the site allows).</li>
+<li><strong>Dependent variables:</strong> primary: <strong>repeat participation</strong> (returning ÷ total, rolling four weeks) and <strong>contamination</strong> (% by weight). Secondary: <strong>kg per contributor per week</strong> (group kg ÷ people present, no names), <strong>receiver acceptance</strong> (% of delivered kg the receiver accepts, rung 3), <strong>cost per kg</strong>, <strong>sharp items unwrapped</strong>, <strong>trust</strong> (interviews).</li>
+<li><strong>Moderators:</strong> group type, group size, baseline contamination, distance to the handover point, saleable share, literacy, pay-day and festival weeks.</li>
+<li><strong>Held constant across arms:</strong> the collection service, bags, schedule, collector, receiver, Phase 1 sessions; no fees or payments to households.</li>
+</ul>
+<p><strong>Consistency with the dossier (H1–H5).</strong> The names match: Trust Receipt, Seva Circle, Claim Ladder, repeat participation, contamination by weight. Four points for the consistency pass:
+1. <strong>The receipt and the Seva Circle are bundled at Satna.</strong> The dossier's method gives treatment groups both; H1 attributes the effect to the receipt. As written, Satna tests the bundle. Isolating the receipt needs at least one group with the receipt and no Seva Circle; with four groups that leaves one group per cell, so effects would be descriptive. This file assumes Satna tests the bundle and the campus isolates framing (H2); see the assumptions log.
+2. <strong>"kg per contributor per week" and "receiver acceptance" are new derived measures.</strong> Both come from data the dossier already collects (weekly weights, head-counts, delivery slips).
+3. <strong>Schools sit outside the comparison</strong>, as above.
+4. <strong>Phase 2 length:</strong> the brief says 8–10 weeks; the dossier's comparison is 8 weeks. The extra weeks are read as set-up and baseline.</p>
+<hr />
+<h2>6. What is different here: no reviewed model combines more than three of these eight features</h2>
+<h3>6.1 Comparison matrix</h3>
+<p>Cells are based on the pages opened (for B-rows, the pages recorded in <code>GLOBAL_BENCHMARKS.md</code>; B6 and B10 re-opened). <strong>Not stated</strong> means the opened page does not say; it does not mean the model lacks the feature.</p>
+<p>Features: <strong>F1</strong> regular service (door-to-door or fixed point, on a schedule) · <strong>F2</strong> women's groups or waste workers operate it · <strong>F3</strong> making or upcycling is the entry hook · <strong>F4</strong> per-batch feedback to contributors on where their waste went · <strong>F5</strong> a public claim rule that stops at the last evidenced rung · <strong>F6</strong> an infrastructure contractor's site hosts nearby villages · <strong>F7</strong> optional cultural framing offered beside a secular one · <strong>F8</strong> a stated route for low-value plastic</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Model</th>
+<th>F1</th>
+<th>F2</th>
+<th>F3</th>
+<th>F4</th>
+<th>F5</th>
+<th>F6</th>
+<th>F7</th>
+<th>F8</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I1 Indore</td>
+<td>yes</td>
+<td>partly (staff mostly women, municipal or contractor)</td>
+<td>not stated</td>
+<td>not stated</td>
+<td>not stated</td>
+<td>no</td>
+<td>partly (religious leaders' sermons; no secular option described)</td>
+<td>partly (dry-waste plant; low-value not specified)</td>
+</tr>
+<tr>
+<td>I2 Ambikapur</td>
+<td>yes</td>
+<td>yes</td>
+<td>not stated</td>
+<td>not stated</td>
+<td>not stated</td>
+<td>no</td>
+<td>not stated</td>
+<td>partly (residual to cement factories)</td>
+</tr>
+<tr>
+<td>I3 Kerala HKS</td>
+<td>yes</td>
+<td>yes</td>
+<td>partly (members may make products)</td>
+<td>not stated (fee receipt only)</td>
+<td>not stated</td>
+<td>no</td>
+<td>not stated</td>
+<td>yes (Clean Kerala Company; paid disposal)</td>
+</tr>
+<tr>
+<td>I4 SWaCH</td>
+<td>yes</td>
+<td>yes</td>
+<td>not stated</td>
+<td>partly (city tours, not per batch)</td>
+<td>not stated</td>
+<td>no</td>
+<td>not stated</td>
+<td>partly (MLP collection with ITC)</td>
+</tr>
+<tr>
+<td>I5 Hasiru Dala DWCCs</td>
+<td>yes</td>
+<td>yes</td>
+<td>not stated</td>
+<td>not stated</td>
+<td>not stated</td>
+<td>no</td>
+<td>not stated</td>
+<td>not stated (centres overrun)</td>
+</tr>
+<tr>
+<td>I6 Mysuru / Saahas</td>
+<td>yes</td>
+<td>partly (scrap entrepreneur and staff)</td>
+<td>not stated</td>
+<td>not stated (records go to the brand)</td>
+<td>partly (audits, certificates; but CO2e and seedling equivalents)</td>
+<td>no</td>
+<td>not stated</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>I7 SBM-G PWMU</td>
+<td>partly</td>
+<td>partly (SHGs or panchayat)</td>
+<td>not stated</td>
+<td>not stated</td>
+<td>not stated</td>
+<td>no</td>
+<td>not stated</td>
+<td>partly (roads, kilns planned)</td>
+</tr>
+<tr>
+<td>I8 Rural MP</td>
+<td>partly</td>
+<td>partly</td>
+<td>partly (SHG products)</td>
+<td>not stated</td>
+<td>not stated</td>
+<td>no</td>
+<td>not stated</td>
+<td>partly (cement factory, roads)</td>
+</tr>
+<tr>
+<td>I9 Akshar Forum</td>
+<td>yes (weekly at school)</td>
+<td>no</td>
+<td>yes</td>
+<td>not stated</td>
+<td>not stated</td>
+<td>no</td>
+<td>not stated</td>
+<td>partly (ecobricks only)</td>
+</tr>
+<tr>
+<td>N1 GEA standard</td>
+<td>no</td>
+<td>not stated</td>
+<td>yes</td>
+<td>partly (each brick logged, peer-validated)</td>
+<td>partly (only authenticated bricks count)</td>
+<td>no</td>
+<td>not stated</td>
+<td>partly (ecobricks only)</td>
+</tr>
+<tr>
+<td>N2 Bottle schools</td>
+<td>no</td>
+<td>partly (community labour)</td>
+<td>yes</td>
+<td>not stated</td>
+<td>not stated</td>
+<td>no</td>
+<td>not stated</td>
+<td>partly (ecobricks as infill)</td>
+</tr>
+<tr>
+<td>N3 Eco-Schools</td>
+<td>no</td>
+<td>partly (pupil committee)</td>
+<td>not stated</td>
+<td>partly (school's own progress)</td>
+<td>partly (impact measured for the award)</td>
+<td>no</td>
+<td>not stated</td>
+<td>not stated</td>
+</tr>
+<tr>
+<td>B6 Kamikatsu</td>
+<td>yes</td>
+<td>no (residents self-sort)</td>
+<td>partly (reuse shop)</td>
+<td>not stated</td>
+<td>not stated</td>
+<td>no</td>
+<td>not stated</td>
+<td>not stated</td>
+</tr>
+<tr>
+<td>B7 Taipei</td>
+<td>yes</td>
+<td>not stated</td>
+<td>not stated</td>
+<td>not stated</td>
+<td>not stated</td>
+<td>no</td>
+<td>not stated</td>
+<td>not stated</td>
+</tr>
+<tr>
+<td>B8 Seoul</td>
+<td>yes</td>
+<td>not stated</td>
+<td>not stated</td>
+<td>partly (own weight, not destination)</td>
+<td>partly (attribution and side effects discussed)</td>
+<td>no</td>
+<td>not stated</td>
+<td>not stated</td>
+</tr>
+<tr>
+<td>B10 Plastic Bank</td>
+<td>yes</td>
+<td>yes (collectors)</td>
+<td>not stated</td>
+<td>partly (log shown to funders)</td>
+<td>not stated</td>
+<td>no</td>
+<td>not stated</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>B11 Bank sampah</td>
+<td>partly</td>
+<td>not stated</td>
+<td>not stated</td>
+<td>not stated</td>
+<td>not stated</td>
+<td>no</td>
+<td>not stated</td>
+<td>partly (raw material for industry)</td>
+</tr>
+<tr>
+<td>B12 Umuganda</td>
+<td>partly (monthly)</td>
+<td>no</td>
+<td>not stated</td>
+<td>not stated</td>
+<td>not stated</td>
+<td>no</td>
+<td>partly (compulsory, not optional)</td>
+<td>not stated</td>
+</tr>
+<tr>
+<td>B13 Soji</td>
+<td>partly (daily)</td>
+<td>no</td>
+<td>not stated</td>
+<td>not stated</td>
+<td>not stated</td>
+<td>no</td>
+<td>partly (everyday ritual)</td>
+<td>not stated</td>
+</tr>
+<tr>
+<td><strong>EcoCraft Phase 2</strong></td>
+<td><strong>planned</strong></td>
+<td><strong>planned</strong></td>
+<td><strong>planned</strong></td>
+<td><strong>planned</strong></td>
+<td><strong>planned</strong></td>
+<td><strong>planned</strong></td>
+<td><strong>planned</strong></td>
+<td><strong>planned</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Tally of "yes" among the 19 reviewed:</strong> F1: 11 · F2: 5 · F3: 3 · F4: 0 · F5: 0 · F6: 0 · F7: 0 · F8: 3. The most "yes" cells in any one row: 3 (Kerala HKS; Plastic Bank).</p>
+<h3>6.2 What is different about this approach (stated honestly)</h3>
+<ol>
+<li><strong>Feedback to contributors.</strong> Of the 19 models reviewed, none stated that it tells contributors where their own batch went. Five do part of it: Plastic Bank shows its log to funders, Seoul shows households their own weight, SWaCH runs city tours, the ecobrick standard logs each brick, and Eco-Schools reports a school's own progress. Phase 2's Trust Receipt points the batch record back at the people who handed the waste over.</li>
+<li><strong>Claims that stop where the evidence stops.</strong> None of the 19 pages states a rule that public claims stop at the last evidenced rung. Four go part of the way (Mysuru's audits and certificates, the ecobrick standard, Eco-Schools' measured impact, Seoul's open discussion of attribution). Mysuru's own report shows why a rule is needed: it converts tonnes into CO2e and seedlings without a life-cycle method. The Claim Ladder applies the rule to every receipt and slide.</li>
+<li><strong>A worksite as a temporary host.</strong> None of the 19 is hosted by an infrastructure contractor's site for the villages around it; the hosts are cities, panchayats, cooperatives, NGOs, schools, a national mission and independent organisations. Phase 2 would test whether a temporary site can start a service that a women's group or panchayat continues after the contractor leaves. This depends on L&amp;T agreeing, which is not yet recorded.</li>
+<li><strong>Making as the hook, with a route beyond the object.</strong> Three of the 19 use making as the entry hook (Akshar Forum, the ecobrick standard, bottle schools), and all three end at the made object. Phase 2 uses the ecobrick as the hook and the proof, then sends surplus plastic to a named receiver and labels bricks as storage.</li>
+<li><strong>Cultural framing as a choice.</strong> Faith or ritual appears in three models (Indore's religious leaders, Umuganda, soji). None of those pages describes offering a secular frame beside it; Umuganda is compulsory. Phase 2 lets each group choose a seva frame or a secular one.</li>
+<li><strong>What is not new.</strong> A regular service and women or waste workers as paid operators are well established: 11 of the 19 run a regular service, and four of the nine Indian models are operated by women's groups or waste workers. Phase 2 borrows these. What is different is the combination: no reviewed model has more than three of the eight features, and none has F4–F7.</li>
+</ol>
+<p>These statements cover the 19 models and the pages opened for them, not every programme that exists.</p>
+<hr />
+<h2>7. Sources</h2>
+<h3>7.1 Pages opened for this file (all accessed 2026-11-16)</h3>
+<ol>
+<li>Mongabay-India, Ambikapur (30 May 2023): https://india.mongabay.com/2023/05/ambikapurs-women-led-waste-management-system-also-generates-revenue-for-the-city/</li>
+<li>The Indian Tribal, "Swachchta Didi" (2 Jan 2022): https://theindiantribal.com/2022/01/02/swachchta-didi</li>
+<li>Kudumbashree, Haritha Karma Sena: https://www.kudumbashree.org/pages/677</li>
+<li>Onmanorama (21 Jan 2023): https://www.onmanorama.com/news/kerala/2023/01/21/user-fee-for-plastic-waste-collection-to-be-made-mandatory-soon.html</li>
+<li>Onmanorama (13 Aug 2024): https://www.onmanorama.com/news/kerala/2024/08/13/kerala-government-collect-plastic-waste-households-weekly-mb-rajesh.html</li>
+<li>Onmanorama, Kollam (18 Sep 2026): https://www.onmanorama.com/news/kerala/2026/09/18/kollam-waste-management-success-haritha-karmasena-incentives.amp.html</li>
+<li>SWaCH homepage: https://swachcoop.com/</li>
+<li>SWaCH–PMC partnership: https://swachcoop.com/about/swach-pmc-partnership/</li>
+<li>Citizen Matters, Bengaluru DWCCs (20 May 2019): https://citizenmatters.in/dry-waste-collection-centres-need-design-changes-to-make-them-function-better/</li>
+<li>Saahas Zero Waste, Mysuru case study (Aug 2020): https://saahaszerowaste.com/explore/reports-and-case-study/lets-transform-reverse-supply-chain-for-plastic-waste-mysuru-case-study.pdf</li>
+<li>Uttarakhand SBM-G page: https://swajal.uk.gov.in/?p=6683</li>
+<li>UP Panchayati Raj, Ballia PWMU note (Jan 2026): https://fs.upprd.in/Upload/SBMG_DOCUMENTS/639042682177494047_PWMU%20FRAMEWORK.pdf</li>
+<li>101Reporters, rural Madhya Pradesh (10 Jan 2024): https://101reporters.com/article/environment/Operational_issues_up_plastic_pollution_in_rural_areas_of_Madhya_Pradesh</li>
+<li>ThePrint, Indore (27 Nov 2021): https://theprint.in/india/these-are-the-secrets-to-indores-5-year-cleanest-city-streak-and-its-not-rocket-science/772362</li>
+<li>The Quint / IndiaSpend, Indore (2 Oct 2019): https://www.thequint.com/news/india/how-indore-set-an-example-by-becoming-the-cleanest-city-in-2019</li>
+<li>Eco-Business / Thomson Reuters Foundation, Akshar Forum (13 Jun 2019): https://www.eco-business.com/news/trash-for-teaching-indian-students-hope-to-set-example-on-plastic-recycling</li>
+<li>Global Ecobrick Alliance, standard: https://ecobricks.org/en/what</li>
+<li>Theirworld, bottle schools (1 Feb 2018): https://theirworld.org/?p=11327</li>
+<li>Eco-Schools homepage: https://www.ecoschools.global/</li>
+<li>Eco-Schools Seven Steps: https://www.ecoschools.global/seven-steps-methodology</li>
+<li>University of the Witwatersrand, ecobricks Q&amp;A (24 Jul 2019): https://www.wits.ac.za/news/latest-news/research-news/2019/2019-07/qa-are-ecobricks-the-answer-to-plastic-pollution.html</li>
+<li>Kamikatsu Zero Waste Center (re-opened): https://zwtk.jp/en/</li>
+<li>Plastic Bank (re-opened): https://plasticbank.com/</li>
+<li>Down To Earth, Alappuzha (30 Nov 2017), opened, not used as a model: https://www.downtoearth.org.in/waste/alappuzha-gets-recognized-by-unep-for-its-solid-waste-management-practices-59258</li>
+</ol>
+<h3>7.2 Pages that failed to open</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>URL</th>
+<th>Result</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>https://kudumbashree.org/pages/677</td>
+<td>TLS certificate mismatch</td>
+<td>www. version opened instead (#3)</td>
+</tr>
+<tr>
+<td>https://pib.gov.in/PressReleasePage.aspx?PRID=1820414</td>
+<td>HTTP 403</td>
+<td>National PWMU progress [UNVERIFIED]</td>
+</tr>
+<tr>
+<td>https://pib.gov.in/PressReleasePage.aspx?PRID=2147695</td>
+<td>HTTP 403</td>
+<td>Same</td>
+</tr>
+<tr>
+<td>https://static.pib.gov.in/WriteReadData/userfiles/file/SBMMX4S.pdf</td>
+<td>Over the 10 MB fetch limit</td>
+<td>Same</td>
+</tr>
+<tr>
+<td>https://www.myscheme.gov.in/schemes/sbm-g-ii</td>
+<td>Error page</td>
+<td>State page used instead (#11)</td>
+</tr>
+<tr>
+<td>https://iec.unicef.in/public/uploads/documents/0c076d435f040cf56f4f8ebe9335fe3c.pdf</td>
+<td>DNS failure</td>
+<td>SBM-G plastic toolkit not read</td>
+</tr>
+<tr>
+<td>https://nicholasinstitute.duke.edu/sites/default/files/sustainable-infrastructure/Swachh-Ambikapur-Mission-Case-Study-Sustainable-Infrastructure-Putting-Principle-into-Practice.pdf</td>
+<td>Access denied (bot protection)</td>
+<td>Ambikapur 2018 counts [UNVERIFIED]; Mongabay used</td>
+</tr>
+<tr>
+<td>https://www.business-standard.com/article/economy-policy/chhattisgarh-s-ambikapur-a-swachh-bharat-model-117071500016_1.html</td>
+<td>HTTP 403</td>
+<td>Same</td>
+</tr>
+<tr>
+<td>https://www.ecoschools.global/how-does-it-work</td>
+<td>HTTP 404</td>
+<td>#19 and #20 used instead</td>
+</tr>
+<tr>
+<td>https://www.ecoschools.global/seven-steps</td>
+<td>HTTP 404</td>
+<td>Same</td>
+</tr>
+</tbody>
+</table></div>
+<h3>7.3 Sources reused from earlier verified files (opened 2026-11-15)</h3>
+<ul>
+<li>Hasiru Dala case study PDF and the BBMP 2020 bye-law: <code>literature_verified.md</code> #22.</li>
+<li>30stades on Hasiru Dala (ID cards, social security): <code>PARTNER_MAP.md</code> F9.</li>
+<li>B7, B8, B11, B12, B13: URLs in <code>GLOBAL_BENCHMARKS.md</code>.</li>
+<li>Wadehra &amp; Mishra (2018) decay figures: <code>statistics_verified.md</code> #9. Indore 95% claim not used: <code>statistics_verified.md</code> #7.</li>
+</ul>
+<h3>7.4 Search-result leads not used as evidence</h3>
+<p>Ambikapur "447 women at 48 centres" (2018) and the ₹1.23 crore → ₹37 lakh spending fall; Mysuru's 2009 zero-waste units and the "95% of garbage sold" ward claim; Alappuzha's household biogas and compost-bin counts; Hug It Forward's cost per classroom; Akshar Forum's founding year, pupil count and anti-burning pledge (other outlets); the CSE scoping paper's 1.18% figure (quoted second-hand in #13).</p></main></body></html>
